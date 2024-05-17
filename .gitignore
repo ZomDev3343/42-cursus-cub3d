@@ -1,0 +1,4 @@
+obj/*.o
+cub3d
+*.a
+.vscode
