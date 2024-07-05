@@ -18,4 +18,28 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
+// Definition of player structure
+typedef struct player {
+    float x;
+    float y;
+    float fov; 
+} t_player;
+
+// Structure for the texture, color (assets) of map
+typedef struct assets{
+    int **n_texture;
+    int **s_texture;
+    int **w_texture;
+    int **e_texture;
+    int f_color[3];
+    int c_color[3];
+} t_assets;
+
+// All information of the game
+typedef struct global {
+    int map[500][500];
+    t_player player;
+    t_assets assets;
+} t_global;
+
 #endif
