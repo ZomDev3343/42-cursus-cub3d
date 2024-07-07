@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
+# include "gnl/get_next_line.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -35,6 +36,7 @@ int		ft_isnum(char *str);
 int		ft_isalpha(char c);
 int		ft_isalphanum(char *str);
 int		ft_isalphanum_c(char c);
+int		ft_strlen(const char *str);
 
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
@@ -46,20 +48,19 @@ char	*ft_strcpy_wsp(char *line, int *index);
 char	*ft_strcpy_until_quote(char *str, char quote);
 char	*ft_strcpy_until_quotes(char *str);
 void	ft_strrepl(char *str, char bef, char aft);
+void	ft_putstr_fd(const char *s, int fd);
 int		ft_strchr_i(char *str, char c);
 int		ft_nstrchr_i(char *str, char c);
 int		ft_strchr_i_nquotes(char *str, char c);
 int		ft_strchr_nalphanum(char *str);
 int		ft_strchr_quotes(char *str);
+int		ft_error(const char *str);
 
 char	*ft_strdup(char *str);
 
-int		ft_atoi(const char *str);
+int		ft_atoi(char *str);
 long	ft_atol(const char *str);
-int		ft_strlen(const char *str);
 char	*ft_itoa(int n);
-
-void	ft_error(const char *str);
 
 void	ft_swap_int(int *a, int *b);
 

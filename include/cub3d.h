@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include "../libft/ft.h"
 
 // Definition of player structure
 typedef struct player {
@@ -41,5 +42,12 @@ typedef struct global {
     t_player player;
     t_assets assets;
 } t_global;
+
+int	parser(t_global *global, char **av);
+int	error_mess(char *str);
+void    free_tab(char **tab);
+int	copy_color(t_global *global, char **split_color, char *color);
+void	init_player(t_global *global, char direction, int y, int x);
+int	copy_line_map(t_global *global, int i, char *line);
 
 #endif

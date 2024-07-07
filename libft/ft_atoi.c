@@ -12,7 +12,7 @@
 
 #include "ft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	size_t			i;
 	long int		r;

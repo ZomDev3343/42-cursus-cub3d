@@ -1,4 +1,5 @@
 obj/*.o
 cub3d
+libft/gnl/
 *.a
 .vscode

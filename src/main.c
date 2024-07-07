@@ -12,9 +12,47 @@
 
 #include "../include/cub3d.h"
 
+/*
+ * Print_global a print global struct information function
+ *
+ * return void
+ * */
+void	print_global(t_global *global)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	printf("====Map====\n");
+	while (global->map[i][0] != -2)
+	{
+		while (global->map[i][j] != -2)
+		{
+			printf("%d", global->map[i][j]);
+			j++;
+		}
+		j = 0;
+		printf("\n");
+		i++;
+	}
+	printf("====Colors====\n");
+	printf("%d:%d:%d\n", global->assets.f_color[0],
+		global->assets.f_color[1], global->assets.f_color[2]);
+	printf("%d:%d:%d\n", global->assets.c_color[0],
+		global->assets.c_color[1], global->assets.c_color[2]);
+	printf("====Player====\n");
+	printf("x = %f, y = %f\n", global->player.x, global->player.y);
+}
+
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
+	t_global	global;
+
+	if (ac != 2)
+		return (ft_error("Usage: ./cube3d <filename.cub>"));
+	if (parser(&global, av))
+		return (1);
+	print_global(&global);
 	return (0);
 }

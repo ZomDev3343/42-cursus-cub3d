@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "ft.h"
-
-void	ft_error(const char *str)
+int	ft_error(const char *str)
 {
-	write(2, str, ft_strlen(str));
+	ft_putstr_fd("\e[31m", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\e[0m\n", 2);
+	return (1);
 }
