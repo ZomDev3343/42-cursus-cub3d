@@ -2,7 +2,7 @@ SRC=$(shell find ./src -name \*.c -type f -print)
 OBJ=$(patsubst ./src/%.c,./obj/%.o,$(SRC))
 NAME=cub3d
 FLAGS=-Wall -Werror -Wextra
-LIBS=./libft/libft.a -I./libft ./mlx/libmlx.a -I./mlx -lm
+LIBS=./libft/libft.a -I./libft ./mlx/libmlx.a -I./mlx -lm -lX11 -lXext
 
 all:
 	make -C libft

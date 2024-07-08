@@ -18,6 +18,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "../libft/ft.h"
+# include "../mlx/mlx.h"
+# include "../mlx/mlx_int.h"
 
 // Definition of player structure
 typedef struct player {
@@ -29,9 +31,17 @@ typedef struct player {
 // Structure for the texture, color (assets) of map
 typedef struct assets{
     void	*n_texture;
+    int		n_w;
+    int		n_h;
     void	*s_texture;
+    int         s_w;
+    int         s_h;
     void	*w_texture;
+    int         w_w;
+    int         w_h;
     void	*e_texture;
+    int         e_w;
+    int         e_h;
     int f_color[3];
     int c_color[3];
 } t_assets;
@@ -50,5 +60,6 @@ void    free_tab(char **tab);
 int	copy_color(t_global *global, char **split_color, char *color);
 void	init_player(t_global *global, char direction, int y, int x);
 int	copy_line_map(t_global *global, int i, char *line);
+int     copy_assets(t_global *global, char **split_line);
 
 #endif

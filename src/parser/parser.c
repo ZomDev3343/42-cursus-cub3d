@@ -12,7 +12,6 @@ int	parse_map_assets(t_global *global, int fd)
 	int		i;
 
 	i = 4;
-	(void) global;
 	while (i)
 	{
 		line = get_next_line(fd);
@@ -20,7 +19,7 @@ int	parse_map_assets(t_global *global, int fd)
 			break ;
 		split_line = ft_split(line, ' ');
 		free(line);
-		printf("direction %s, file %s", split_line[0], split_line[1]);
+		copy_assets(global, split_line);
 		free_tab(split_line);
 		i--;
 	}
@@ -96,6 +95,7 @@ int	parser(t_global *global, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_error("Error open file"));
+	global->mlx = mlx_init();
 	parse_map_assets(global, fd);
 	parse_map_color(global, fd);
 	parse_map_matrice(global, fd);
