@@ -28,10 +28,10 @@ typedef struct player {
 
 // Structure for the texture, color (assets) of map
 typedef struct assets{
-    int **n_texture;
-    int **s_texture;
-    int **w_texture;
-    int **e_texture;
+    void	*n_texture;
+    void	*s_texture;
+    void	*w_texture;
+    void	*e_texture;
     int f_color[3];
     int c_color[3];
 } t_assets;
@@ -41,6 +41,7 @@ typedef struct global {
     int map[500][500];
     t_player player;
     t_assets assets;
+    void	*mlx;
 } t_global;
 
 int	parser(t_global *global, char **av);
