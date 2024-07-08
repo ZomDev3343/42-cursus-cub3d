@@ -56,5 +56,6 @@ Faire du player une structe avec:
 # Erreur possible
 - couleur invalide
 - texture inexistante/permission
+- map existe pas
 - map pas fermé
-- caractere indesiré (lettre en plein milieu de la map ou mauvaise direction avant la texture) 
+- caractere indesiré (lettre en plein milieu de la map ou mauvaise direction avant la texture)
