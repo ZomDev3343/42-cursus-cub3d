@@ -77,21 +77,24 @@ int	copy_line_map(t_global *global, int i, char *line)
  * */
 int	copy_assets(t_global *global, char **split_line)
 {
-	if (ft_strcmp(split_line[0], "NO" ))
+	char	*texture_path;
+
+	texture_path = ft_strncpy(split_line[1], ft_strchr_i(split_line[1], '\n'));
+	if (ft_strcmp(split_line[0], "NO"))
 		global->assets.n_texture = mlx_xpm_file_to_image(global->mlx,
-				split_line[1], &(global->assets.n_w), &(global->assets.n_h));
+				texture_path, &(global->assets.n_w), &(global->assets.n_h));
 	else if (ft_strcmp(split_line[0], "SO"))
 		global->assets.s_texture = mlx_xpm_file_to_image(global->mlx,
-				split_line[1], &(global->assets.s_w), &(global->assets.s_h));
+				texture_path, &(global->assets.s_w), &(global->assets.s_h));
 	else if (ft_strcmp(split_line[0], "WE"))
 		global->assets.w_texture = mlx_xpm_file_to_image(global->mlx,
-				split_line[1], &(global->assets.w_w), &(global->assets.w_h));
+				texture_path, &(global->assets.w_w), &(global->assets.w_h));
 	else if (ft_strcmp(split_line[0], "EA"))
 		global->assets.e_texture = mlx_xpm_file_to_image(global->mlx,
-				split_line[1], &(global->assets.e_w), &(global->assets.e_h));
+				texture_path, &(global->assets.e_w), &(global->assets.e_h));
 	else
-		return (error_mess("Incorrect texture direction"));
-	return (0);
+		return (free(texture_path), error_mess("Incorrect texture direction"));
+	return (free(texture_path), 0);
 }
 
 int	must_skip_line(char *line)

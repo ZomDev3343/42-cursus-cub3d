@@ -26,7 +26,7 @@ int	parse_map_assets(t_global *global, int fd)
 		free_tab(split_line);
 		i--;
 	}
-	return (0);
+	return (check_assets(global, fd));
 }
 
 /*

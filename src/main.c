@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/09 15:38:53 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/09 17:34:43 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,22 @@ void	print_global(t_global *global)
 	printf("x = %f, y = %f\n", global->player.x, global->player.y);
 }
 
+void	free_global(t_global *global)
+{
+	free_assets(global);
+	free(global->mlx);
+}
+
 int	main(int ac, char **av)
 {
 	t_global	global;
 
 	if (ac != 2)
 		return (ft_error("Usage: ./cube3d <filename.cub>"));
+	global.mlx = mlx_init();
 	if (parser(&global, av))
-		return (1);
+		return (free_global(&global), 1);
 	print_global(&global);
+	free_global(&global);
 	return (0);
 }
