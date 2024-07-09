@@ -105,7 +105,7 @@ int	parser(t_global *global, char **av)
 
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		return (ft_error("Error open file"));
+		return (error_mess("Can't open map file !"));
 	if (parse_map_assets(global, fd) == 0)
 		if (parse_map_color(global, fd) == 0)
 			if (parse_map_matrice(global, fd) == 0)

@@ -54,6 +54,5 @@ Faire du player une structe avec:
 [1,1,1,1,1,1,1,1,1,1,1,-1,-1,-1,1,1,1,1,1,1,1,1,1]
 ```
 # Erreur possible
-- texture inexistante/permission
 - map existe pas
 - map pas ferme

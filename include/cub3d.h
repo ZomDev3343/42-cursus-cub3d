@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/09 17:34:06 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/09 17:44:10 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int     is_color_correct(int r, int g, int b);
 /* Assets */
 
 void    free_assets(t_global *global);
+void	init_assets(t_assets *assets);
 
 #endif
