@@ -12,12 +12,18 @@ int	copy_color(t_global *global, char **split_color, char *color)
 		global->assets.f_color[0] = ft_atoi(split_color[0]);
 		global->assets.f_color[1] = ft_atoi(split_color[1]);
 		global->assets.f_color[2] = ft_atoi(split_color[2]);
+		if (is_color_correct(global->assets.f_color[0],
+			global->assets.f_color[1], global->assets.f_color[2]) == 1)
+			return (error_mess("Incorrect floor color !"), 1);
 	}
 	else if (color[0] == 'C' && color[1] == '\0')
 	{
 		global->assets.c_color[0] = ft_atoi(split_color[0]);
 		global->assets.c_color[1] = ft_atoi(split_color[1]);
 		global->assets.c_color[2] = ft_atoi(split_color[2]);
+		if (is_color_correct(global->assets.c_color[0],
+			global->assets.c_color[1], global->assets.c_color[2]) == 1)
+			return (error_mess("Incorrect ceiling color !"), 1);
 	}
 	else
 		return (1);

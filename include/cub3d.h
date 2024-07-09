@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/09 13:53:19 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/09 16:46:37 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,9 @@ void	init_player(t_global *global, char direction, int y, int x);
 int	    copy_line_map(t_global *global, int i, char *line);
 int     copy_assets(t_global *global, char **split_line);
 int	    must_skip_line(char *line);
+
+/* Colors */
+
+int     is_color_correct(int r, int g, int b);
 
 #endif

@@ -52,7 +52,9 @@ int	parse_map_color(t_global *global, int fd)
 		split_line = ft_split(line, ' ');
 		free(line);
 		split_color = ft_split(split_line[1], ',');
-		copy_color(global, split_color, split_line[0]);
+		if (copy_color(global, split_color, split_line[0]) == 1)
+			return (free_gnl(fd), free_tab(split_line),
+				free_tab(split_color), 1);
 		free_tab(split_line);
 		free_tab(split_color);
 		i--;
