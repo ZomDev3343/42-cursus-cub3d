@@ -16,15 +16,16 @@ int	parse_map_assets(t_global *global, int fd)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break ;
+			return (1);
+		if (must_skip_line(line) == 1)
+			continue ;
 		split_line = ft_split(line, ' ');
 		free(line);
-		copy_assets(global, split_line);
+		if (copy_assets(global, split_line) == 1)
+			return (free_tab(split_line), free_gnl(fd), 1);
 		free_tab(split_line);
 		i--;
 	}
-	line = get_next_line(fd);
-	free(line);
 	return (0);
 }
 
@@ -46,6 +47,8 @@ int	parse_map_color(t_global *global, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		if (must_skip_line(line) == 1)
+			continue ;
 		split_line = ft_split(line, ' ');
 		free(line);
 		split_color = ft_split(split_line[1], ',');
@@ -54,8 +57,6 @@ int	parse_map_color(t_global *global, int fd)
 		free_tab(split_color);
 		i--;
 	}
-	line = get_next_line(fd);
-	free(line);
 	return (0);
 }
 
@@ -75,7 +76,15 @@ int	parse_map_matrice(t_global *global, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		copy_line_map(global, i, line);
+		if (must_skip_line(line) == 1)
+		{
+			if (i == 0)
+				continue ;
+			else
+				return (free_gnl(fd), 1);
+		}
+		if (copy_line_map(global, i, line) == 1)
+			return (free(line), free_gnl(fd), 1);
 		free(line);
 		i++;
 	}
@@ -95,10 +104,9 @@ int	parser(t_global *global, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_error("Error open file"));
-	global->mlx = mlx_init();
-	parse_map_assets(global, fd);
-	parse_map_color(global, fd);
-	parse_map_matrice(global, fd);
-	close(fd);
-	return (0);
+	if (parse_map_assets(global, fd) == 0)
+		if (parse_map_color(global, fd) == 0)
+			if (parse_map_matrice(global, fd) == 0)
+				return (printf("Parsing correct !\n"), close(fd), 0);
+	return (error_mess("Parsing incorrect !"), close(fd), 1);
 }

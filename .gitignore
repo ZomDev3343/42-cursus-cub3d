@@ -1,5 +1,7 @@
 obj/*.o
+obj/*/*.o
 cub3d
-libft/gnl/
+libft/*.o
+libft/gnl/*.o
 *.a
 .vscode

@@ -1,3 +1,5 @@
+GNL=gnl/get_next_line.c \
+	gnl/get_next_line_utils.c
 SRC=ft_split.c \
 	ft_split_2.c \
 	ft_atoi.c \
@@ -21,7 +23,6 @@ SRC=ft_split.c \
 	ft_min.c \
 	ft_max.c \
 	ft_putstr_fd.c \
-	$(PRINTF) \
 	$(GNL)
 OBJ= $(SRC:.c=.o)
 NAME=libft.a
@@ -32,7 +33,7 @@ $(NAME): $(OBJ)
 	ar -rc $(NAME) $(OBJ)
 
 %.o: %.c
-	cc -c -Wall -Werror -Wextra -Iprintf -Ignl -g $< -o $@
+	cc -c -Wall -Werror -Wextra -Ignl -g $< -o $@
 
 clean:
 	rm -rf *.o

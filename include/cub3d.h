@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/05/17 19:38:47 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/09 13:53:19 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef struct player {
     float x;
     float y;
-    float fov; 
+    float fov;
 } t_player;
 
 // Structure for the texture, color (assets) of map
@@ -54,12 +54,13 @@ typedef struct global {
     void	*mlx;
 } t_global;
 
-int	parser(t_global *global, char **av);
-int	error_mess(char *str);
+int	    parser(t_global *global, char **av);
+int	    error_mess(char *str);
 void    free_tab(char **tab);
-int	copy_color(t_global *global, char **split_color, char *color);
+int	    copy_color(t_global *global, char **split_color, char *color);
 void	init_player(t_global *global, char direction, int y, int x);
-int	copy_line_map(t_global *global, int i, char *line);
+int	    copy_line_map(t_global *global, int i, char *line);
 int     copy_assets(t_global *global, char **split_line);
+int	    must_skip_line(char *line);
 
 #endif

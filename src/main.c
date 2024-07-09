@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/05/17 19:32:39 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/09 15:38:53 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ void	print_global(t_global *global)
 	int	j;
 
 	i = 0;
-	j = 0;
 	printf("====Map====\n");
 	while (global->map[i][0] != -2)
 	{
+		j = 0;
 		while (global->map[i][j] != -2)
 		{
 			printf("%d", global->map[i][j]);
 			j++;
 		}
-		j = 0;
 		printf("\n");
 		i++;
 	}
