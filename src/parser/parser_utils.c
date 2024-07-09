@@ -14,7 +14,7 @@ int	copy_color(t_global *global, char **split_color, char *color)
 		global->assets.f_color[2] = ft_atoi(split_color[2]);
 		if (is_color_correct(global->assets.f_color[0],
 			global->assets.f_color[1], global->assets.f_color[2]) == 1)
-			return (error_mess("Incorrect floor color !"), 1);
+			return (error_mess("Incorrect floor color !"));
 	}
 	else if (color[0] == 'C' && color[1] == '\0')
 	{
@@ -23,7 +23,7 @@ int	copy_color(t_global *global, char **split_color, char *color)
 		global->assets.c_color[2] = ft_atoi(split_color[2]);
 		if (is_color_correct(global->assets.c_color[0],
 			global->assets.c_color[1], global->assets.c_color[2]) == 1)
-			return (error_mess("Incorrect ceiling color !"), 1);
+			return (error_mess("Incorrect ceiling color !"));
 	}
 	else
 		return (1);
@@ -90,7 +90,7 @@ int	copy_assets(t_global *global, char **split_line)
 		global->assets.e_texture = mlx_xpm_file_to_image(global->mlx,
 				split_line[1], &(global->assets.e_w), &(global->assets.e_h));
 	else
-		return (1);
+		return (error_mess("Incorrect texture direction"));
 	return (0);
 }
 
