@@ -54,5 +54,4 @@ Faire du player une structe avec:
 [1,1,1,1,1,1,1,1,1,1,1,-1,-1,-1,1,1,1,1,1,1,1,1,1]
 ```
 # Erreur possible
-- map existe pas
 - map pas ferme
