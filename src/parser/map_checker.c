@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:53:38 by truello           #+#    #+#             */
-/*   Updated: 2024/07/10 16:32:19 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/10 19:48:15 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_enclosed(int map[500][500], t_queue_node *qnode)
 	return (0);
 }
 
-void flood_fill(int map[500][500], int y, int x)
+static void	flood_fill(int map[500][500], int y, int x)
 {
 	t_queue			*queue;
 	t_queue_node	*node;
@@ -45,7 +45,6 @@ void flood_fill(int map[500][500], int y, int x)
 	while (!is_queue_empty(queue))
 	{
 		node = dequeue_q(queue);
-		printf("Node X: %d Y: %d\n", node->x, node->y);
 		if (map[node->y][node->x] != 2 && is_enclosed(map, node) == 0)
 		{
 			if (map[node->y][node->x] == 0)
@@ -58,4 +57,25 @@ void flood_fill(int map[500][500], int y, int x)
 		free(node);
 	}
 	free(queue);
+}
+
+int	is_map_closed(t_global *global)
+{
+	int	i;
+	int	j;
+
+	flood_fill(global->map, 0, 0);
+	i = 0;
+	while (global->map[i][0] != -2)
+	{
+		j = 0;
+		while (global->map[i][j] != -2)
+		{
+			if (global->map[i][j] == 0)
+				return (error_mess("The given map is not correctly closed !"));
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

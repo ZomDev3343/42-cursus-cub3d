@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/10 14:50:26 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/10 19:46:09 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	    copy_line_map(t_global *global, int i, char *line);
 int     copy_assets(t_global *global, char **split_line);
 int	    must_skip_line(char *line);
 int     check_assets(t_global *global, int fd);
+int		is_map_closed(t_global *global);
 
 /* Colors */
 
@@ -94,6 +95,5 @@ void			enqueue(t_queue *queue, t_queue_node *qnode);
 void			dequeue(t_queue *queue);
 t_queue_node	*dequeue_q(t_queue *queue);
 int				is_queue_empty(t_queue *queue);
-void			flood_fill(int map[500][500], int y, int x);
 
 #endif

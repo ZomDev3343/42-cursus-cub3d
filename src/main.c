@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/10 14:46:57 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/10 19:47:29 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ int	main(int ac, char **av)
 	init_assets(&(global.assets));
 	if (parser(&global, av))
 		return (free_global(&global), 1);
-	print_global(&global);
-	flood_fill(global.map, 0, 0);
-	print_global(&global);
+	if (is_map_closed(&global) == 0)
+		printf("Map is correct !\n");
 	free_global(&global);
 	return (0);
 }
