@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/09 17:44:30 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/10 14:46:57 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	main(int ac, char **av)
 	init_assets(&(global.assets));
 	if (parser(&global, av))
 		return (free_global(&global), 1);
+	print_global(&global);
+	flood_fill(global.map, 0, 0);
 	print_global(&global);
 	free_global(&global);
 	return (0);

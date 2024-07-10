@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/09 17:44:10 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/10 14:50:26 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,20 @@ typedef struct global {
     void	*mlx;
 } t_global;
 
+typedef struct s_queue_node
+{
+	int					value;
+	int					x;
+	int					y;
+	struct s_queue_node	*next;
+}	t_queue_node;
+
+typedef struct s_queue
+{
+	t_queue_node	*front;
+	t_queue_node	*rear;
+}	t_queue;
+
 int	    parser(t_global *global, char **av);
 int	    error_mess(char *str);
 void    free_tab(char **tab);
@@ -72,5 +86,14 @@ int     is_color_correct(int r, int g, int b);
 
 void    free_assets(t_global *global);
 void	init_assets(t_assets *assets);
+
+/* Queue */
+
+t_queue_node	*create_qnode(int value, int x, int y);
+void			enqueue(t_queue *queue, t_queue_node *qnode);
+void			dequeue(t_queue *queue);
+t_queue_node	*dequeue_q(t_queue *queue);
+int				is_queue_empty(t_queue *queue);
+void			flood_fill(int map[500][500], int y, int x);
 
 #endif
