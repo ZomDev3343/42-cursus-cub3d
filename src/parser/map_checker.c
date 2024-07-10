@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:53:38 by truello           #+#    #+#             */
-/*   Updated: 2024/07/10 16:21:05 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/10 16:32:19 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,20 @@ static int	is_case_valid(int value)
 
 static int	is_enclosed(int map[500][500], t_queue_node *qnode)
 {
-	int	enclosed_status;
-
-	enclosed_status = 0;
 	if (qnode->value != 0)
 		return (0);
 	if ((qnode->y == 0 && qnode->value == 0)
 		|| (qnode->x == 0 && qnode->value == 0))
-		enclosed_status = 1;
+		return (1);
 	if (!is_case_valid(map[qnode->y][qnode->x + 1]))
-		enclosed_status = 1;
+		return (1);
 	if (qnode->x > 0 && !is_case_valid(map[qnode->y][qnode->x - 1]))
-		enclosed_status = 1;
+		return (1);
 	if (map[qnode->y + 1][0] != -2 && !is_case_valid(map[qnode->y + 1][qnode->x]))
-		enclosed_status = 1;
+		return (1);
 	if (qnode->y > 0 && !is_case_valid(map[qnode->y - 1][qnode->x]))
-		enclosed_status = 1;
-	return (enclosed_status);
+		return (1);
+	return (0);
 }
 
 void flood_fill(int map[500][500], int y, int x)
@@ -49,7 +46,7 @@ void flood_fill(int map[500][500], int y, int x)
 	{
 		node = dequeue_q(queue);
 		printf("Node X: %d Y: %d\n", node->x, node->y);
-		if (is_enclosed(map, node) == 0)
+		if (map[node->y][node->x] != 2 && is_enclosed(map, node) == 0)
 		{
 			if (map[node->y][node->x] == 0)
 				map[node->y][node->x] = 2;
