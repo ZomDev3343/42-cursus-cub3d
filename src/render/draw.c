@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:20:56 by truello           #+#    #+#             */
-/*   Updated: 2024/07/11 15:32:08 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 16:03:16 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 /*
 	Draws a pixel
 */
-void	draw_pixel(t_img *img, t_draw_info info)
+void	draw_pixel(t_image *img, int x, int y, int color)
 {
 	int		pos;
 	char	*dest;
 
-	if (info.start_x > img->vars->win_width || info.start_x < 0
-		|| info.start_y > img->vars->win_height || info.start_y < 0)
+	if (x > img->global->win_width || x < 0
+		|| y > img->global->win_height || y < 0)
 		return ;
-	pos = (info.start_y * img->line_length
-			+ info.start_x * (img->bits_per_pixel / 8));
+	pos = (y * img->line_length
+			+ x * (img->bits_per_pixel / 8));
 	dest = img->addr + pos;
-	*((unsigned int *)dest) = info.color;
+	*((unsigned int *)dest) = color;
 }

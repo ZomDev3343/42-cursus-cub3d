@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/11 15:39:09 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 16:03:28 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,19 @@ typedef struct global {
     t_player player;
     t_assets assets;
     void	*mlx;
+    void    *mlx_win;
     int     win_width;
     int     win_height;
 } t_global;
 
-typedef struct	s_img
+typedef struct s_image
 {
-	XImage			*image;
-	Pixmap			pix;
-	GC				gc;
-	int				size_line;
-	int				bpp;
-	int				width;
-	int				height;
-	int				type;
-	int				format;
-	char			*data;
-	XShmSegmentInfo	shm;
-}				t_img;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	t_global	*global;
+}	t_image;
 
 typedef struct s_queue_node
 {
@@ -95,6 +90,7 @@ int	    copy_line_map(t_global *global, int i, char *line);
 int     copy_assets(t_global *global, char **split_line);
 int	    must_skip_line(char *line);
 int     check_assets(t_global *global, int fd);
+int     is_map_closed(t_global *global);
 
 /* Colors */
 
@@ -112,12 +108,15 @@ void			enqueue(t_queue *queue, t_queue_node *qnode);
 void			dequeue(t_queue *queue);
 t_queue_node	*dequeue_q(t_queue *queue);
 int				is_queue_empty(t_queue *queue);
-void			flood_fill(int map[500][500], int y, int x);
 
 /* Global */
 
 void	print_global(t_global *global);
 void	free_global(t_global *global);
 void    init_global(t_global *global);
+
+/* Render */
+
+void	render_cub3d(t_global *global);
 
 #endif

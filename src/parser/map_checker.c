@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:53:38 by truello           #+#    #+#             */
-/*   Updated: 2024/07/11 15:17:09 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 15:43:27 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_enclosed(int map[500][500], t_queue_node *qnode)
 	return (0);
 }
 
-void flood_fill(int map[500][500], int y, int x)
+static void flood_fill(int map[500][500], int y, int x)
 {
 	t_queue			*queue;
 	t_queue_node	*node;
@@ -57,4 +57,25 @@ void flood_fill(int map[500][500], int y, int x)
 		free(node);
 	}
 	free(queue);
+}
+
+int	is_map_closed(t_global *global)
+{
+	int	i;
+	int	j;
+
+	flood_fill(global->map, 0, 0);
+	i = 0;
+	while (global->map[i][0] != -2)
+	{
+		j = 0;
+		while (global->map[i][j] != -2)
+		{
+			if (global->map[i][j] == 0)
+				return (error_mess("The given map is not correctly closed !"));
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
