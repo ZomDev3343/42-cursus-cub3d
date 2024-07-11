@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:53:38 by truello           #+#    #+#             */
-/*   Updated: 2024/07/10 16:32:19 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 15:17:09 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void flood_fill(int map[500][500], int y, int x)
 	while (!is_queue_empty(queue))
 	{
 		node = dequeue_q(queue);
-		printf("Node X: %d Y: %d\n", node->x, node->y);
 		if (map[node->y][node->x] != 2 && is_enclosed(map, node) == 0)
 		{
 			if (map[node->y][node->x] == 0)
