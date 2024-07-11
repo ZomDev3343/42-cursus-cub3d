@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/11 16:06:51 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 16:10:33 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int ac, char **av)
 	init_global(&global);
 	if (parser(&global, av) || is_map_closed(&global))
 		return (free_global(&global), 1);
+	global.mlx_win = mlx_new_window(global.mlx, global.win_width,
+		global.win_height, "Cub3D by pow(Thomas, 2)");
 	render_cub3d(&global);
 	free_global(&global);
 	return (0);

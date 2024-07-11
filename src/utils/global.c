@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:36:11 by truello           #+#    #+#             */
-/*   Updated: 2024/07/11 16:06:05 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 16:12:10 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	print_global(t_global *global)
 void	free_global(t_global *global)
 {
 	free_assets(global);
-	mlx_destroy_display(global->mlx);
-	free(global->mlx);
 	if (global->mlx_win)
 		mlx_destroy_window(global->mlx, global->mlx_win);
+	mlx_destroy_display(global->mlx);
+	free(global->mlx);
 }
 
 void init_global(t_global *global)
