@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:36:11 by truello           #+#    #+#             */
-/*   Updated: 2024/07/11 16:12:10 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 17:28:16 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	free_global(t_global *global)
 void init_global(t_global *global)
 {
 	global->mlx = mlx_init();
+	if (!global->mlx)
+		printf("fmweoghoewhg\n");
 	global->mlx_win = NULL;
 	global->win_width = 800;
 	global->win_height = 600;

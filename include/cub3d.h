@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/11 16:03:28 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 17:14:03 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_image
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
+    int         endian;
 	t_global	*global;
 }	t_image;
 
@@ -81,6 +82,14 @@ typedef struct s_queue
 	t_queue_node	*rear;
 }	t_queue;
 
+typedef struct s_square
+{
+    int x1;
+    int y1;
+    int size;
+    int color;
+}   t_square;
+
 int	    parser(t_global *global, char **av);
 int	    error_mess(char *str);
 void    free_tab(char **tab);
@@ -95,6 +104,8 @@ int     is_map_closed(t_global *global);
 /* Colors */
 
 int     is_color_correct(int r, int g, int b);
+int     rgba(int r, int g, int b, int a);
+int     rgb(int r, int g, int b);
 
 /* Assets */
 
@@ -115,8 +126,14 @@ void	print_global(t_global *global);
 void	free_global(t_global *global);
 void    init_global(t_global *global);
 
+/* Draw */
+
+void	draw_pixel(t_image *img, int x, int y, int color);
+void	draw_square(t_image *image, t_square square);
+t_square	make_square(int x1, int y1, int size, int color);
 /* Render */
 
-void	render_cub3d(t_global *global);
+int	render_cub3d(t_global *global);
+
 
 #endif

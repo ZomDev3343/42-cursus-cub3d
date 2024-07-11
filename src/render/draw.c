@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:20:56 by truello           #+#    #+#             */
-/*   Updated: 2024/07/11 16:03:16 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/11 17:05:57 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,18 @@ void	draw_pixel(t_image *img, int x, int y, int color)
 			+ x * (img->bits_per_pixel / 8));
 	dest = img->addr + pos;
 	*((unsigned int *)dest) = color;
+}
+
+void	draw_square(t_image *image, t_square square)
+{
+	int	i;
+	int	j;
+
+	i = square.x1 - 1;
+	while (++i < square.x1 + square.size)
+	{
+		j = square.y1 - 1;
+		while (++j < square.y1 + square.size)
+			draw_pixel(image, i, j, square.color);
+	}
 }
