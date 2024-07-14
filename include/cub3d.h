@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/11 17:14:03 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/14 11:32:50 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include "../libft/ft.h"
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
+# include <math.h>
+
+# define PI 3.14159265
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
 
 // Definition of player structure
 typedef struct player {
@@ -90,6 +97,14 @@ typedef struct s_square
     int color;
 }   t_square;
 
+typedef struct s_circle
+{
+    int x;
+    int y;
+    int radius;
+    int color;
+}   t_circle;
+
 int	    parser(t_global *global, char **av);
 int	    error_mess(char *str);
 void    free_tab(char **tab);
@@ -130,7 +145,10 @@ void    init_global(t_global *global);
 
 void	draw_pixel(t_image *img, int x, int y, int color);
 void	draw_square(t_image *image, t_square square);
+void    draw_circle(t_image *image, t_circle circle);
 t_square	make_square(int x1, int y1, int size, int color);
+t_circle    make_circle(int x, int y, int radius, int color);
+
 /* Render */
 
 int	render_cub3d(t_global *global);

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/13 19:06:16 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/14 11:31:09 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	render_minimap(t_image *image)
 		}
 		i++;
 	}
+	draw_circle(image, make_circle((int) image->global->player.x,
+		(int)image->global->player.y, 12, rgb(0, 255, 0)));
 }
 
 static void	render_raycast(t_image *image)
