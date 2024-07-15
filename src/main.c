@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/14 11:36:16 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:35:33 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,8 @@ static int manage_input(int keycode, t_global *global)
 {
 	if (keycode == 65307)
 		close_window(global);
-	if (keycode == KEY_W)
-		global->player.y -= 0.01;
-	if (keycode == KEY_S)
-		global->player.y += 0.01;
-	if (keycode == KEY_A)
-		global->player.x -= 0.01;
-	if (keycode == KEY_D)
-		global->player.x += 0.01;
+	manage_camera_input(&(global->player), keycode);
+	(void)manage_movements;
 	printf("Key pressed : %d\n", keycode);
 	return (0);
 }
@@ -43,6 +37,7 @@ int	main(int ac, char **av)
 	init_global(&global);
 	if (parser(&global, av) || is_map_closed(&global))
 		return (free_global(&global), 1);
+	printf("Player Pos X: %f, Y: %f\n", global.player.x, global.player.y);
 	global.mlx_win = mlx_new_window(global.mlx, global.win_width,
 		global.win_height, "Cub3D by pow(Thomas, 2)");
 	mlx_hook(global.mlx_win, 2, 1L << 0, manage_input, &global);

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:07:55 by truello           #+#    #+#             */
-/*   Updated: 2024/07/15 13:17:04 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:58:35 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	calculate_side_dist(t_ray *ray, t_player *player)
 	}
 }
 
-void	calculate_ray_dist(t_ray *ray, t_player *player, int cameraX)
+void	calculate_ray_dist(t_ray *ray, t_player *player, float cameraX)
 {
 	ray->ray_dir_x = player->dir_x + player->plane_x * cameraX;
 	ray->ray_dir_y = player->dir_y + player->plane_y * cameraX;
@@ -72,8 +72,31 @@ void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
 			map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (global->map[map_x][map_y] == MAP_WALL
-			|| global->map[map_x][map_y] == MAP_CLOSED_DOOR)
+		if (global->map[map_y][map_x] == MAP_WALL
+			|| global->map[map_y][map_x] == MAP_CLOSED_DOOR)
 			ray->hit = 1;
 	}
+}
+
+void	draw_stripe(t_ray *ray, t_image *image, int x)
+{
+	int lineHeight;
+	int drawStart;
+	int drawEnd;
+	float	h;
+	int	color;
+
+	h = image->global->win_height;
+	color = rgb(255, 0, 0);
+	lineHeight = (int)(h / ray->perp_wall_dist);
+	drawStart = -lineHeight / 2 + h / 2;
+	drawEnd =  lineHeight / 2 + h / 2;
+	if (drawStart < 0)
+		drawStart = 0;
+	if (drawEnd >= h)
+		drawEnd = h - 1;
+	if (ray->side == 1)
+		color = rgb(0, 255, 0);
+	while (drawStart < drawEnd)
+		draw_pixel(image, x, drawStart++, color);
 }

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/15 13:16:29 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:59:16 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 
 # define MAP_WALL 1
 # define MAP_CLOSED_DOOR 4
+
+# define ROT_SPEED 0.25
+# define MOVE_SPEED 0.25
 
 // Definition of player structure
 typedef struct player {
@@ -172,7 +175,13 @@ t_circle    make_circle(int x, int y, int radius, int color);
 /* Render */
 
 int     render_cub3d(t_global *global);
-void	calculate_ray_dist(t_ray *ray, t_player *player, int cameraX);
+void	calculate_ray_dist(t_ray *ray, t_player *player, float cameraX);
 void	check_hit_walls(t_ray *ray, t_global *global, t_player *player);
+void	draw_stripe(t_ray *ray, t_image *image, int x);
+
+/* Input */
+
+void manage_camera_input(t_player *player, int keycode);
+void  manage_movements(int map[500][500], t_player *player, int keycode);
 
 #endif
