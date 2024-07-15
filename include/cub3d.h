@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/14 11:32:50 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:16:29 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@
 # define KEY_A 97
 # define KEY_D 100
 
+# define MAP_WALL 1
+# define MAP_CLOSED_DOOR 4
+
 // Definition of player structure
 typedef struct player {
     float x;
     float y;
-    float fov;
-    float angle;
+    float dir_x;
+    float dir_y;
+    float plane_x;
+    float plane_y;
 } t_player;
 
 // Structure for the texture, color (assets) of map
@@ -105,6 +110,21 @@ typedef struct s_circle
     int color;
 }   t_circle;
 
+typedef struct s_ray
+{
+    float ray_dir_x;
+    float ray_dir_y;
+    float side_dist_x;
+    float side_dist_y;
+    float delta_dist_x;
+    float delta_dist_y;
+    float perp_wall_dist;
+    int step_x;
+    int step_y;
+    int hit;
+    int side;
+}   t_ray;
+
 int	    parser(t_global *global, char **av);
 int	    error_mess(char *str);
 void    free_tab(char **tab);
@@ -151,7 +171,8 @@ t_circle    make_circle(int x, int y, int radius, int color);
 
 /* Render */
 
-int	render_cub3d(t_global *global);
-
+int     render_cub3d(t_global *global);
+void	calculate_ray_dist(t_ray *ray, t_player *player, int cameraX);
+void	check_hit_walls(t_ray *ray, t_global *global, t_player *player);
 
 #endif

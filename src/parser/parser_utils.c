@@ -31,19 +31,6 @@ int	copy_color(t_global *global, char **split_color, char *color)
 }
 
 /*
- * init_player init the entity player (struct)
- *
- * return status error or succes
- * */
-void	init_player(t_global *global, char direction, int y, int x)
-{
-	(void) direction;
-	global->map[y][x] = 0;
-	global->player.x = (float) x;
-	global->player.y = (float) y;
-}
-
-/*
  * copy_line_map transform and copy the char *line in int *tab
  *
  * return status error or succes
