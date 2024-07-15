@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/15 15:59:16 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/15 23:27:58 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MAP_WALL 1
 # define MAP_CLOSED_DOOR 4
 
-# define ROT_SPEED 0.25
+# define ROT_SPEED 0.15
 # define MOVE_SPEED 0.25
 
 // Definition of player structure

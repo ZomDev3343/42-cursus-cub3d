@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:23:41 by truello           #+#    #+#             */
-/*   Updated: 2024/07/15 15:27:23 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/15 23:24:32 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,25 @@ void manage_camera_input(t_player *player, int keycode)
 
 void  manage_movements(int map[500][500], t_player *player, int keycode)
 {
+  int pos_x;
+  int pos_y;
+
+  pos_x = (int) player->x;
+  pos_y = (int) player->y;
   if (keycode == KEY_W)
   {
-    if (map[(int)(player->y)][(int)(player->x + player->dir_x * MOVE_SPEED)] == 0)
+    printf("Pos X : %f, Pos Y : %f\n", player->x, player->y);
+    if (map[pos_y][(int)(player->x + player->dir_x * MOVE_SPEED)] == 2)
       player->x += player->dir_x * MOVE_SPEED;
-    if (map[(int)(player->y + player->dir_y * MOVE_SPEED)][(int)(player->x)] == 0)
+    if (map[(int)(player->y + player->dir_y * MOVE_SPEED)][pos_x] == 2)
       player->y += player->dir_y * MOVE_SPEED;
   }
   if (keycode == KEY_S)
   {
-    if (map[(int)(player->y)][(int)(player->x - player->dir_x * MOVE_SPEED)] == 0)
+    printf("Pos X : %f, Pos Y : %f\n", player->x, player->y);
+    if (map[pos_y][(int)(player->x - player->dir_x * MOVE_SPEED)] == 2)
       player->x -= player->dir_x * MOVE_SPEED;
-    if (map[(int)(player->y - player->dir_y * MOVE_SPEED)][(int)(player->x)] == 0)
+    if (map[(int)(player->y - player->dir_y * MOVE_SPEED)][pos_x] == 2)
       player->y -= player->dir_y * MOVE_SPEED;
   }
 }

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/15 15:35:33 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/15 21:23:25 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int manage_input(int keycode, t_global *global)
 	if (keycode == 65307)
 		close_window(global);
 	manage_camera_input(&(global->player), keycode);
-	(void)manage_movements;
+	manage_movements(global->map, &(global->player), keycode);
 	printf("Key pressed : %d\n", keycode);
 	return (0);
 }
