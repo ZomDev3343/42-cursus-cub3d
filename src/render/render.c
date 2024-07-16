@@ -6,7 +6,7 @@
 /*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/16 20:35:46 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/17 00:13:46 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 		ray = ft_calloc(1, sizeof(t_ray));
 		calculate_ray_dist(ray, player, 2 * i / ((float) w) - 1);
 		check_hit_walls(ray, global, player);
-		if (ray->side == 0)
+		if (ray->side >= 2)
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 		else
 			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);

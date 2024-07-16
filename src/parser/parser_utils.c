@@ -6,7 +6,7 @@
 /*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:44 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/16 20:37:53 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/17 00:06:58 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	copy_assets(t_global *global, char **split_line)
 {
 	char	*texture_path;
 
+	if (!split_line[1])
+		return (1);
 	texture_path = ft_strncpy(split_line[1], ft_strchr_i(split_line[1], '\n'));
 	if (ft_strcmp(split_line[0], "NO"))
 		global->assets.n_texture = mlx_xpm_file_to_image(global->mlx,
