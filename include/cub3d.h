@@ -6,7 +6,7 @@
 /*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/16 20:33:49 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/16 23:43:39 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,43 +37,43 @@
 // Definition of player structure
 typedef struct player
 {
-    float	x;
-    float	y;
-    float	dir_x;
-    float	dir_y;
-    float	plane_x;
-    float	plane_y;
+	float	x;
+	float	y;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
 }	t_player;
 
 // Structure for the texture, color (assets) of map
 typedef struct assets
 {
-    void	*n_texture;
-    int		n_w;
-    int		n_h;
-    void	*s_texture;
-    int		s_w;
-    int		s_h;
-    void	*w_texture;
-    int		w_w;
-    int		w_h;
-    void	*e_texture;
-    int		e_w;
-    int		e_h;
-    int		f_color[3];
-    int		c_color[3];
+	void	*n_texture;
+	int		n_w;
+	int		n_h;
+	void	*s_texture;
+	int		s_w;
+	int		s_h;
+	void	*w_texture;
+	int		w_w;
+	int		w_h;
+	void	*e_texture;
+	int		e_w;
+	int		e_h;
+	int		f_color[3];
+	int		c_color[3];
 }	t_assets;
 
 // All information of the game
 typedef struct global
 {
-    int			map[500][500];
-    t_player	player;
-    t_assets	assets;
-    void		*mlx;
-    void		*mlx_win;
-    int			win_width;
-    int			win_height;
+	int			map[500][500];
+	t_player	player;
+	t_assets	assets;
+	void		*mlx;
+	void		*mlx_win;
+	int			win_width;
+	int			win_height;
 }	t_global;
 
 typedef struct s_image
@@ -82,7 +82,7 @@ typedef struct s_image
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
-    int			endian;
+	int			endian;
 	t_global	*global;
 }	t_image;
 
@@ -102,33 +102,33 @@ typedef struct s_queue
 
 typedef struct s_square
 {
-    int	x1;
-    int	y1;
-    int	size;
-    int	color;
+	int	x1;
+	int	y1;
+	int	size;
+	int	color;
 }	t_square;
 
 typedef struct s_circle
 {
-    int	x;
-    int	y;
-    int	radius;
-    int	color;
+	int	x;
+	int	y;
+	int	radius;
+	int	color;
 }	t_circle;
 
 typedef struct s_ray
 {
-    float	ray_dir_x;
-    float	ray_dir_y;
-    float	side_dist_x;
-    float	side_dist_y;
-    float	delta_dist_x;
-    float	delta_dist_y;
-    float	perp_wall_dist;
-    int		step_x;
-    int		step_y;
-    int		hit;
-    int		side;
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	float	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
 }	t_ray;
 
 int				parser(t_global *global, char **av);
