@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:36:11 by truello           #+#    #+#             */
-/*   Updated: 2024/07/14 11:15:20 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:25:09 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	free_global(t_global *global)
 	free(global->mlx);
 }
 
-void init_global(t_global *global)
+void	init_global(t_global *global)
 {
 	global->mlx = mlx_init();
 	if (!global->mlx)

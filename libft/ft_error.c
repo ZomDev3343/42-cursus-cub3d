@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:15:26 by truello           #+#    #+#             */
-/*   Updated: 2023/11/14 16:16:17 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:23:22 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
+
 int	ft_error(const char *str)
 {
 	ft_putstr_fd("\e[31m", 2);

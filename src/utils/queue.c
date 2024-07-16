@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:19:44 by truello           #+#    #+#             */
-/*   Updated: 2024/07/10 15:05:34 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:35:06 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	enqueue(t_queue *queue, t_queue_node *qnode)
 	queue->rear = qnode;
 }
 
-void dequeue(t_queue *queue)
+void	dequeue(t_queue *queue)
 {
 	t_queue_node	*tmp;
 
@@ -56,6 +56,7 @@ t_queue_node	*dequeue_q(t_queue *queue)
 		queue->rear = NULL;
 	return (tmp);
 }
+
 int	is_queue_empty(t_queue *queue)
 {
 	return (queue && queue->front == NULL);

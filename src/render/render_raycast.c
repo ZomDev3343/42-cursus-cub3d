@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycast.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:07:55 by truello           #+#    #+#             */
-/*   Updated: 2024/07/15 21:29:29 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:37:13 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	calculate_side_dist(t_ray *ray, t_player *player)
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = (((int)player->x) + 1.0 - player->x) * ray->delta_dist_x;
+		ray->side_dist_x = (((int)player->x) + 1.0 - player->x)
+			* ray->delta_dist_x;
 	}
 	if (ray->ray_dir_y < 0)
 	{
@@ -32,7 +33,8 @@ static void	calculate_side_dist(t_ray *ray, t_player *player)
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = (((int)player->y) + 1.0 - player->y) * ray->delta_dist_y;
+		ray->side_dist_y = (((int)player->y) + 1.0 - player->y)
+			* ray->delta_dist_y;
 	}
 }
 
@@ -80,23 +82,23 @@ void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
 
 void	draw_stripe(t_ray *ray, t_image *image, int x)
 {
-	int lineHeight;
-	int drawStart;
-	int drawEnd;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 	float	h;
-	int	color;
+	int		color;
 
 	h = image->global->win_height;
 	color = rgb(255, 0, 0);
-	lineHeight = (int)(h / ray->perp_wall_dist);
-	drawStart = -lineHeight / 2 + h / 2;
-	drawEnd =  lineHeight / 2 + h / 2;
-	if (drawStart < 0)
-		drawStart = 0;
-	if (drawEnd >= h)
-		drawEnd = h - 1;
+	line_height = (int)(h / ray->perp_wall_dist);
+	draw_start = -line_height / 2 + h / 2;
+	draw_end = line_height / 2 + h / 2;
+	if (draw_start < 0)
+		draw_start = 0;
+	if (draw_end >= h)
+		draw_end = h - 1;
 	if (ray->side == 1)
 		color = rgb(0, 255, 0);
-	while (drawStart < drawEnd)
-		draw_pixel(image, x, drawStart++, color);
+	while (draw_start < draw_end)
+		draw_pixel(image, x, draw_start++, color);
 }

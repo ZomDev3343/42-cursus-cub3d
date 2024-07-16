@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/16 20:37:44 by tohma             #+#    #+#             */
+/*   Updated: 2024/07/16 20:37:53 by tohma            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 /*
@@ -13,7 +25,7 @@ int	copy_color(t_global *global, char **split_color, char *color)
 		global->assets.f_color[1] = ft_atoi(split_color[1]);
 		global->assets.f_color[2] = ft_atoi(split_color[2]);
 		if (is_color_correct(global->assets.f_color[0],
-			global->assets.f_color[1], global->assets.f_color[2]) == 1)
+				global->assets.f_color[1], global->assets.f_color[2]) == 1)
 			return (error_mess("Incorrect floor color !"));
 	}
 	else if (color[0] == 'C' && color[1] == '\0')
@@ -22,7 +34,7 @@ int	copy_color(t_global *global, char **split_color, char *color)
 		global->assets.c_color[1] = ft_atoi(split_color[1]);
 		global->assets.c_color[2] = ft_atoi(split_color[2]);
 		if (is_color_correct(global->assets.c_color[0],
-			global->assets.c_color[1], global->assets.c_color[2]) == 1)
+				global->assets.c_color[1], global->assets.c_color[2]) == 1)
 			return (error_mess("Incorrect ceiling color !"));
 	}
 	else

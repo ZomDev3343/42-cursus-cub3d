@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:20:56 by truello           #+#    #+#             */
-/*   Updated: 2024/07/14 11:28:46 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:35:18 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	draw_square(t_image *image, t_square square)
 	}
 }
 
-void draw_circle(t_image *image, t_circle circle)
+void	draw_circle(t_image *image, t_circle circle)
 {
 	float	i;
 

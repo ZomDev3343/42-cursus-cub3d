@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:53:38 by truello           #+#    #+#             */
-/*   Updated: 2024/07/11 15:43:27 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:23:04 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ static int	is_enclosed(int map[500][500], t_queue_node *qnode)
 		return (1);
 	if (qnode->x > 0 && !is_case_valid(map[qnode->y][qnode->x - 1]))
 		return (1);
-	if (map[qnode->y + 1][0] != -2 && !is_case_valid(map[qnode->y + 1][qnode->x]))
+	if (map[qnode->y + 1][0] != -2
+			&& !is_case_valid(map[qnode->y + 1][qnode->x]))
 		return (1);
 	if (qnode->y > 0 && !is_case_valid(map[qnode->y - 1][qnode->x]))
 		return (1);
 	return (0);
 }
 
-static void flood_fill(int map[500][500], int y, int x)
+static void	flood_fill(int map[500][500], int y, int x)
 {
 	t_queue			*queue;
 	t_queue_node	*node;
@@ -50,9 +51,11 @@ static void flood_fill(int map[500][500], int y, int x)
 			if (map[node->y][node->x] == 0)
 				map[node->y][node->x] = 2;
 			if (map[node->y][node->x + 1] != -2)
-				enqueue(queue, create_qnode(map[node->y][node->x + 1], node->x + 1, node->y));
+				enqueue(queue, create_qnode(map[node->y][node->x + 1],
+						node->x + 1, node->y));
 			if (map[node->y + 1][0] != -2 && map[node->y + 1][node->x] > -1)
-				enqueue(queue, create_qnode(map[node->y + 1][node->x], node->x, node->y + 1));
+				enqueue(queue, create_qnode(map[node->y + 1][node->x],
+						node->x, node->y + 1));
 		}
 		free(node);
 	}

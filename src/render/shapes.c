@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:54:40 by truello           #+#    #+#             */
-/*   Updated: 2024/07/14 11:27:14 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:37:26 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_square	make_square(int x1, int y1, int size, int color)
 {
-	t_square square;
+	t_square	square;
 
 	square.x1 = x1;
 	square.y1 = y1;
@@ -33,4 +33,3 @@ t_circle	make_circle(int x, int y, int radius, int color)
 	circle.color = color;
 	return (circle);
 }
-

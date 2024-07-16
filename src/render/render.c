@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/15 15:55:03 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/16 20:35:46 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ static void	render_minimap(t_image *image)
 		while (image->global->map[i][j] != -2)
 		{
 			if (image->global->map[i][j] == 1)
-				draw_square(image, make_square(j * 33, i * 33, 32, rgb(255, 255, 255)));
+				draw_square(image, make_square(j * 33, i * 33,
+						32, rgb(255, 255, 255)));
 			j++;
 		}
 		i++;
 	}
 	draw_circle(image, make_circle((int) image->global->player.x,
-		(int)image->global->player.y, 12, rgb(0, 255, 0)));
+			(int)image->global->player.y, 12, rgb(0, 255, 0)));
 }
 
 static void	render_raycast(t_image *image, t_global *global, t_player *player)
@@ -60,7 +61,8 @@ int	render_cub3d(t_global *global)
 	t_image	main_image;
 
 	main_image.global = global;
-	main_image.img = mlx_new_image(global->mlx, global->win_width, global->win_height);
+	main_image.img = mlx_new_image(global->mlx, global->win_width,
+			global->win_height);
 	main_image.addr = mlx_get_data_addr(main_image.img,
 			&(main_image.bits_per_pixel), &(main_image.line_length),
 			&(main_image.endian));
