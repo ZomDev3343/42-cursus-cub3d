@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:44 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 00:06:58 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/17 14:47:24 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	copy_line_map(t_global *global, int i, char *line)
 		if ((line[j] - '0') >= 0 && (line[j] - '0' <= 1))
 			global->map[i][j] = line[j] - '0';
 		else if (line[j] == 'N' || line[j] == 'S'
-			|| line[j] == 'E' || line[j] == 'O')
+			|| line[j] == 'E' || line[j] == 'W')
 			init_player(global, line[j], i, j);
 		else if (line[j] == ' ')
 			global->map[i][j] = -1;

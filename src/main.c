@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/16 23:38:52 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/17 14:08:23 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+/*
+				TODO
+	- Ajouter les textures sur les murs
+	- Ajouter les couleurs au plafond et au sol
+	- Ajouter les portes
+*/
 
 static int	close_window(t_global *global)
 {

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:23:41 by truello           #+#    #+#             */
-/*   Updated: 2024/07/16 20:33:38 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/17 14:58:27 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	manage_right_camera_movement(t_player *player)
+void	manage_left_camera_movement(t_player *player)
 {
 	float	old_dir_x;
 	float	old_plane_x;
@@ -29,7 +29,7 @@ void	manage_right_camera_movement(t_player *player)
 		* cos(-ROT_SPEED);
 }
 
-void	manage_left_camera_movement(t_player *player)
+void	manage_right_camera_movement(t_player *player)
 {
 	float	old_dir_x;
 	float	old_plane_x;

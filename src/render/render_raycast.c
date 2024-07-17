@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:07:55 by truello           #+#    #+#             */
-/*   Updated: 2024/07/17 14:04:39 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/17 14:55:45 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	calculate_side_dist(t_ray *ray, t_player *player)
 
 void	calculate_ray_dist(t_ray *ray, t_player *player, float cameraX)
 {
-	ray->ray_dir_x = player->dir_x + player->plane_x * cameraX;
-	ray->ray_dir_y = player->dir_y + player->plane_y * cameraX;
+	ray->ray_dir_x = player->dir_x + player->plane_x * -cameraX;
+	ray->ray_dir_y = player->dir_y + player->plane_y * -cameraX;
 	if (ray->ray_dir_x == 0)
 		ray->delta_dist_x = 9999.0f;
 	else
