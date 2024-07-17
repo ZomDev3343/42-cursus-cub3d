@@ -34,6 +34,42 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 	}
 }
 
+static void     add_minimap(t_image *image, t_global *global, t_player *player)
+{
+	int	i = 0;
+	int	j = 0;
+	
+	while (global->map[i][0] != -2)
+	{
+		while(global->map[i][j] != -2)
+		{
+			t_square square;
+
+			square.x1 = j*10;
+			square.y1 = i*10;
+			square.size = 10;
+			if (global->map[i][j] == 1)
+				square.color = rgb(255, 255, 255);
+			else
+				square.color = rgb(0, 0, 0);
+			draw_square(image, square);
+			if (i == (int)player->y && j == (int)player->x)
+			{
+				t_square s_player;
+
+				s_player.x1 = j * 10 + 4;
+				s_player.y1 = i * 10 + 4;
+				s_player.size = 2;
+				s_player.color = rgb(255, 0, 0);
+				draw_square(image, s_player);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
 int	render_cub3d(t_global *global)
 {
 	t_image	main_image;
@@ -45,6 +81,7 @@ int	render_cub3d(t_global *global)
 			&(main_image.bits_per_pixel), &(main_image.line_length),
 			&(main_image.endian));
 	render_raycast(&main_image, global, &(global->player));
+	add_minimap(&main_image, global, &(global->player));
 	mlx_put_image_to_window(global->mlx, global->mlx_win, main_image.img, 0, 0);
 	mlx_destroy_image(global->mlx, main_image.img);
 	return (0);
