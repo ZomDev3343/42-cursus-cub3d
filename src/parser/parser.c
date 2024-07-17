@@ -115,6 +115,8 @@ int	parser(t_global *global, char **av)
 {
 	int	fd;
 
+	if (ft_strcmp(av[1] + (ft_strlen(av[1]) - 5), ".cub") != 0)
+		return (error_mess("Invalid file type"));
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (error_mess("Can't open map file !"));
