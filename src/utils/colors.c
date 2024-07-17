@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:44:33 by truello           #+#    #+#             */
-/*   Updated: 2024/07/18 00:18:48 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 01:00:53 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int	rgb(int r, int g, int b)
 
 int	get_pixel_color(t_image *img, int x, int y)
 {
-	return (img->addr[img->height * y + x]);
+	return (((int *) img->addr)[img->height * y + x]);
 }
