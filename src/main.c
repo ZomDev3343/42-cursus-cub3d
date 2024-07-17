@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 14:08:23 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:38:38 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ static int	manage_input(int keycode, t_global *global)
 {
 	if (keycode == 65307)
 		close_window(global);
-	if (keycode == KEY_A)
+	if (keycode == KEY_LEFT)
 		manage_left_camera_movement(&(global->player));
-	if (keycode == KEY_D)
+	if (keycode == KEY_RIGHT)
 		manage_right_camera_movement(&(global->player));
-	manage_movements(global->map, &(global->player), keycode);
+	manage_forward_movements(global->map, &(global->player), keycode);
+	manage_strafe_movements(global->map, &(global->player), keycode);
 	printf("Key pressed : %d\n", keycode);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:23:41 by truello           #+#    #+#             */
-/*   Updated: 2024/07/17 14:58:27 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:41:49 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,32 @@ void	manage_right_camera_movement(t_player *player)
 		* cos(ROT_SPEED);
 }
 
-void	manage_movements(int map[500][500], t_player *player, int keycode)
+void	manage_strafe_movements(int map[500][500], t_player *player,
+	int keycode)
+{
+	int	pos_x;
+	int	pos_y;
+
+	pos_x = (int)player->x;
+	pos_y = (int)player->y;
+	if (keycode == KEY_A)
+	{
+		if (map[pos_y][(int)(player->x + player->plane_x * MOVE_SPEED)] == 2)
+			player->x += player->plane_x * MOVE_SPEED;
+		if (map[(int)(player->y + player->plane_y * MOVE_SPEED)][pos_x] == 2)
+			player->y += player->plane_y * MOVE_SPEED;
+	}
+	if (keycode == KEY_D)
+	{
+		if (map[pos_y][(int)(player->x - player->plane_x * MOVE_SPEED)] == 2)
+			player->x -= player->plane_x * MOVE_SPEED;
+		if (map[(int)(player->y - player->plane_y * MOVE_SPEED)][pos_x] == 2)
+			player->y -= player->plane_y * MOVE_SPEED;
+	}
+}
+
+void	manage_forward_movements(int map[500][500], t_player *player,
+	int keycode)
 {
 	int	pos_x;
 	int	pos_y;
@@ -54,7 +79,6 @@ void	manage_movements(int map[500][500], t_player *player, int keycode)
 	pos_y = (int)player->y;
 	if (keycode == KEY_W)
 	{
-		printf("Pos X : %f, Pos Y : %f\n", player->x, player->y);
 		if (map[pos_y][(int)(player->x + player->dir_x * MOVE_SPEED)] == 2)
 			player->x += player->dir_x * MOVE_SPEED;
 		if (map[(int)(player->y + player->dir_y * MOVE_SPEED)][pos_x] == 2)
@@ -62,7 +86,6 @@ void	manage_movements(int map[500][500], t_player *player, int keycode)
 	}
 	if (keycode == KEY_S)
 	{
-		printf("Pos X : %f, Pos Y : %f\n", player->x, player->y);
 		if (map[pos_y][(int)(player->x - player->dir_x * MOVE_SPEED)] == 2)
 			player->x -= player->dir_x * MOVE_SPEED;
 		if (map[(int)(player->y - player->dir_y * MOVE_SPEED)][pos_x] == 2)

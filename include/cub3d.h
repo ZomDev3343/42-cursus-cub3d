@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 14:18:39 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:38:22 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define KEY_S 115
 # define KEY_A 97
 # define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 # define MAP_WALL 1
 # define MAP_CLOSED_DOOR 4
@@ -186,7 +188,9 @@ void			draw_stripe(t_ray *ray, t_image *image, int x);
 
 void			manage_right_camera_movement(t_player *player);
 void			manage_left_camera_movement(t_player *player);
-void			manage_movements(int map[500][500],
+void			manage_strafe_movements(int map[500][500], t_player *player,
+					int keycode);
+void			manage_forward_movements(int map[500][500],
 					t_player *player, int keycode);
 
 #endif
