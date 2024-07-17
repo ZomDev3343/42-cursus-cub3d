@@ -33,8 +33,8 @@
 # define MAP_WALL 1
 # define MAP_CLOSED_DOOR 4
 
-# define ROT_SPEED 0.15
-# define MOVE_SPEED 0.25
+# define ROT_SPEED 0.05
+# define MOVE_SPEED 0.10
 
 // Definition of player structure
 typedef struct player
