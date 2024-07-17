@@ -25,6 +25,19 @@ static int	close_window(t_global *global)
 	return (exit(0), 0);
 }
 
+static int	mouse_manage(int x, int y, t_global *global)
+{
+	(void) y;
+	if (x == global->mouse_x)
+		return (0);
+	if (x < global->mouse_x)
+		manage_left_camera_movement(&(global->player));	
+	else if (x > global->mouse_x)
+		manage_right_camera_movement(&(global->player));
+	global->mouse_x = x;
+	return (0);
+}
+
 static int	manage_input(int keycode, t_global *global)
 {
 	if (keycode == 65307)
@@ -53,6 +66,7 @@ int	main(int ac, char **av)
 			global.win_height, "Cub3D by pow(Thomas, 2)");
 	mlx_hook(global.mlx_win, 2, 1L << 0, manage_input, &global);
 	mlx_hook(global.mlx_win, 17, 0, close_window, &global);
+	mlx_hook(global.mlx_win, 6, 1L << 6, mouse_manage, &global);
 	mlx_loop_hook(global.mlx, render_cub3d, &global);
 	mlx_loop(global.mlx);
 	free_global(&global);

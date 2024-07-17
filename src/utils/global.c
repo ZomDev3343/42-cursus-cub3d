@@ -61,5 +61,6 @@ void	init_global(t_global *global)
 	global->mlx_win = NULL;
 	global->win_width = 800;
 	global->win_height = 600;
+	global->mouse_x = global->win_width / 2;
 	init_assets(&(global->assets));
 }

@@ -76,6 +76,7 @@ typedef struct global
 	void		*mlx_win;
 	int			win_width;
 	int			win_height;
+	int			mouse_x;
 }	t_global;
 
 typedef struct s_image
