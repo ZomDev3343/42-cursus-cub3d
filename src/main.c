@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 15:38:38 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:45:57 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	main(int ac, char **av)
 	init_global(&global);
 	if (parser(&global, av) || is_map_closed(&global))
 		return (free_global(&global), 1);
-	printf("Player Pos X: %f, Y: %f\n", global.player.x, global.player.y);
 	global.mlx_win = mlx_new_window(global.mlx, global.win_width,
 			global.win_height, "Cub3D by pow(Thomas, 2)");
 	mlx_hook(global.mlx_win, 2, 1L << 0, manage_input, &global);

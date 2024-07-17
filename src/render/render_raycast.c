@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:07:55 by truello           #+#    #+#             */
-/*   Updated: 2024/07/17 14:55:45 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 00:46:08 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,29 +102,26 @@ void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
 	}
 }
 
-void	draw_stripe(t_ray *ray, t_image *image, int x)
+void	draw_stripe(t_ray *ray, t_image *image, int x, t_player *player)
 {
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	float	h;
-	int		color;
+	t_draw_wall	di;
 
-	h = image->global->win_height;
-	color = rgb(255, 0, 0);
-	line_height = (int)(h / ray->perp_wall_dist);
-	draw_start = -line_height / 2 + h / 2;
-	draw_end = line_height / 2 + h / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	if (draw_end >= h)
-		draw_end = h - 1;
-	if (ray->side == 1)
-		color = rgb(0, 255, 0);
-	if (ray->side == 2)
-		color = rgb(0, 0, 255);
-	if (ray->side == 3)
-		color = rgb(128, 128, 0);
-	while (draw_start < draw_end)
-		draw_pixel(image, x, draw_start++, color);
+	di.h = image->global->win_height;
+	di.texture = choose_texture(image->global, ray->side);
+	di.line_height = (int)(di.h / ray->perp_wall_dist);
+	di.start_y = -di.line_height / 2 + di.h / 2;
+	di.end_y = di.line_height / 2 + di.h / 2;
+	if (di.start_y < 0)
+		di.start_y = 0;
+	if (di.end_y >= di.h)
+		di.end_y = di.h - 1;
+	if (ray->side >= 2)
+		di.wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		di.wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
+	di.wall_x -= floorf(di.wall_x);
+	di.tex_x = (int)(di.wall_x * di.texture->width);
+	di.step = 1.0 * di.texture->height / di.line_height;
+	di.tex_pos = (di.start_y - di.h / 2 + di.line_height / 2) * di.step;
+	draw_wall_stripe(&di, image, x);
 }
