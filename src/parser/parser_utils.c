@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:44 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 17:23:59 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 12:11:39 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	copy_line_map(t_global *global, int i, char *line)
 static void	get_texture(t_global *global, char *texture_path, t_image *texture)
 {
 	texture->img = mlx_xpm_file_to_image(global->mlx,
-		texture_path, &(texture->width), &(texture->height));
+			texture_path, &(texture->width), &(texture->height));
 	if (!texture->img)
 		return ;
 	texture->addr = mlx_get_data_addr(texture->img,
-		&(texture->bits_per_pixel), &(texture->line_length),
-		&(texture->endian));
+			&(texture->bits_per_pixel), &(texture->line_length),
+			&(texture->endian));
 }
 
 /*

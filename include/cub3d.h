@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/18 00:09:35 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 12:13:14 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define ROT_SPEED 0.15
 # define MOVE_SPEED 0.25
 
-struct s_global;
+struct	s_global;
 
 // Definition of player structure
 typedef struct player
@@ -190,15 +190,17 @@ t_circle		make_circle(int x, int y, int radius, int color);
 
 /* Draw Walls */
 
-void	draw_wall_stripe(t_draw_wall *drawinfos, t_image *screen, int x);
-t_image	*choose_texture(t_global *global, int side);
+void			draw_wall_stripe(t_draw_wall *drawinfos, t_image *screen,
+					int x);
+t_image			*choose_texture(t_global *global, int side);
 
 /* Render */
 
 int				render_cub3d(t_global *global);
 void			calculate_ray_dist(t_ray *ray, t_player *player, float cameraX);
 void			check_hit_walls(t_ray *ray, t_global *global, t_player *player);
-void			draw_stripe(t_ray *ray, t_image *image, int x, t_player *player);
+void			draw_stripe(t_ray *ray, t_image *image, int x,
+					t_player *player);
 
 /* Input */
 

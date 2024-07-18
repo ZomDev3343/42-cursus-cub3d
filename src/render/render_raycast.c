@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:07:55 by truello           #+#    #+#             */
-/*   Updated: 2024/07/18 01:04:36 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 12:12:17 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,15 @@ void	draw_stripe(t_ray *ray, t_image *image, int x, t_player *player)
 		di.start_y = 0;
 	if (di.end_y >= di.h)
 		di.end_y = di.h - 1;
-	if (ray->side <= 1)
+	if (ray->side >= 2)
 		di.wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
 		di.wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	di.wall_x -= floorf(di.wall_x);
 	di.tex_x = (int)(di.wall_x * di.texture->width);
-	// if(ray->side >= 2 && ray->ray_dir_x > 0)
-	// 	di.tex_x = di.texture->height - di.tex_x - 1;
-    if(ray->side <= 1 && ray->ray_dir_y < 0)
+	if (ray->side >= 2 && ray->ray_dir_x > 0)
+		di.tex_x = di.texture->height - di.tex_x - 1;
+	if (ray->side <= 1 && ray->ray_dir_y != 0)
 		di.tex_x = di.texture->height - di.tex_x - 1;
 	di.step = 1.0 * di.texture->height / di.line_height;
 	di.tex_pos = (di.start_y - di.h / 2 + di.line_height / 2) * di.step;
