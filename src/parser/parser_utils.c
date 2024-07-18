@@ -54,7 +54,7 @@ int	copy_line_map(t_global *global, int i, char *line)
 	j = 0;
 	while (line[j + 1])
 	{
-		if ((line[j] - '0') >= 0 && (line[j] - '0' <= 1))
+		if (((line[j] - '0') >= 0 && (line[j] - '0' <= 1)) || line[j] - '0' == 4)
 			global->map[i][j] = line[j] - '0';
 		else if (line[j] == 'N' || line[j] == 'S'
 			|| line[j] == 'E' || line[j] == 'W')
@@ -69,7 +69,7 @@ int	copy_line_map(t_global *global, int i, char *line)
 	return (0);
 }
 
-static void	get_texture(t_global *global, char *texture_path, t_image *texture)
+void	get_texture(t_global *global, char *texture_path, t_image *texture)
 {
 	texture->img = mlx_xpm_file_to_image(global->mlx,
 			texture_path, &(texture->width), &(texture->height));

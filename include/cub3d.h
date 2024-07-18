@@ -68,6 +68,7 @@ typedef struct assets
 	t_image	s_texture;
 	t_image	w_texture;
 	t_image	e_texture;
+	t_image door_texture;
 	int		f_color[3];
 	int		c_color[3];
 }	t_assets;
@@ -183,6 +184,7 @@ void			init_global(t_global *global);
 
 /* Draw */
 
+void			get_texture(t_global *global, char *texture_path, t_image *texture);
 void			draw_pixel(t_image *img, int x, int y, int color);
 void			draw_square(t_image *image, t_square square);
 void			draw_circle(t_image *image, t_circle circle);

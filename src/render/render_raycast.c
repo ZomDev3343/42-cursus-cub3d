@@ -96,8 +96,7 @@ void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
 			map_y += ray->step_y;
 			check_side(ray, 1);
 		}
-		if (global->map[map_y][map_x] == MAP_WALL
-			|| global->map[map_y][map_x] == MAP_CLOSED_DOOR)
+		if (global->map[map_y][map_x] == MAP_WALL)
 			ray->hit = 1;
 	}
 }
