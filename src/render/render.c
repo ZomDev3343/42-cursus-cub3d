@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/17 23:56:26 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 12:42:11 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,20 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 	}
 }
 
-static void     add_minimap(t_image *image, t_global *global, t_player *player)
+static void	add_minimap(t_image *image, t_global *global, t_player *player)
 {
-	int	i = 0;
-	int	j = 0;
-	
+	int			i;
+	int			j;
+	t_square	square;
+
+	i = 0;
 	while (global->map[i][0] != -2)
 	{
-		while(global->map[i][j] != -2)
+		j = 0;
+		while (global->map[i][j] != -2)
 		{
-			t_square square;
-
-			square.x1 = j*10;
-			square.y1 = i*10;
+			square.x1 = j * 10;
+			square.y1 = i * 10;
 			square.size = 10;
 			if (global->map[i][j] == 1)
 				square.color = rgb(255, 255, 255);
@@ -54,18 +55,10 @@ static void     add_minimap(t_image *image, t_global *global, t_player *player)
 				square.color = rgb(0, 0, 0);
 			draw_square(image, square);
 			if (i == (int)player->y && j == (int)player->x)
-			{
-				t_square s_player;
-
-				s_player.x1 = j * 10 + 4;
-				s_player.y1 = i * 10 + 4;
-				s_player.size = 2;
-				s_player.color = rgb(255, 0, 0);
-				draw_square(image, s_player);
-			}
+				draw_square(image, make_square(j * 10 + 4, i * 10 + 4,
+						2, rgb(255, 0, 0)));
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 }

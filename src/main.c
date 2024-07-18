@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 15:45:57 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 12:42:37 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	mouse_manage(int x, int y, t_global *global)
 	if (x == global->mouse_x)
 		return (0);
 	if (x < global->mouse_x)
-		manage_left_camera_movement(&(global->player));	
+		manage_left_camera_movement(&(global->player));
 	else if (x > global->mouse_x)
 		manage_right_camera_movement(&(global->player));
 	global->mouse_x = x;
