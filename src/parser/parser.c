@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:38 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/16 20:37:39 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/18 17:01:51 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	parser(t_global *global, char **av)
 {
 	int	fd;
 
-	if (ft_strcmp(av[1] + (ft_strlen(av[1]) - 5), ".cub") != 0)
+	if (ft_strcmp(av[1] + (ft_strlen(av[1]) - 4), ".cub") == 0)
 		return (error_mess("Invalid file type"));
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
