@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/18 12:13:14 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 15:01:49 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,10 @@ t_circle		make_circle(int x, int y, int radius, int color);
 void			draw_wall_stripe(t_draw_wall *drawinfos, t_image *screen,
 					int x);
 t_image			*choose_texture(t_global *global, int side);
+
+/* Draw floor and ceiling */
+
+void			draw_floor_and_ceiling(t_image *image, int x);
 
 /* Render */
 
