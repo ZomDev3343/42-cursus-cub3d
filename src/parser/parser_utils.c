@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:44 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 14:47:24 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 12:11:39 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,17 @@ int	copy_line_map(t_global *global, int i, char *line)
 	return (0);
 }
 
+static void	get_texture(t_global *global, char *texture_path, t_image *texture)
+{
+	texture->img = mlx_xpm_file_to_image(global->mlx,
+			texture_path, &(texture->width), &(texture->height));
+	if (!texture->img)
+		return ;
+	texture->addr = mlx_get_data_addr(texture->img,
+			&(texture->bits_per_pixel), &(texture->line_length),
+			&(texture->endian));
+}
+
 /*
  * copy_assets is a function for get images assets
  *
@@ -82,17 +93,13 @@ int	copy_assets(t_global *global, char **split_line)
 		return (1);
 	texture_path = ft_strncpy(split_line[1], ft_strchr_i(split_line[1], '\n'));
 	if (ft_strcmp(split_line[0], "NO"))
-		global->assets.n_texture = mlx_xpm_file_to_image(global->mlx,
-				texture_path, &(global->assets.n_w), &(global->assets.n_h));
+		get_texture(global, texture_path, &(global->assets.n_texture));
 	else if (ft_strcmp(split_line[0], "SO"))
-		global->assets.s_texture = mlx_xpm_file_to_image(global->mlx,
-				texture_path, &(global->assets.s_w), &(global->assets.s_h));
+		get_texture(global, texture_path, &(global->assets.s_texture));
 	else if (ft_strcmp(split_line[0], "WE"))
-		global->assets.w_texture = mlx_xpm_file_to_image(global->mlx,
-				texture_path, &(global->assets.w_w), &(global->assets.w_h));
+		get_texture(global, texture_path, &(global->assets.w_texture));
 	else if (ft_strcmp(split_line[0], "EA"))
-		global->assets.e_texture = mlx_xpm_file_to_image(global->mlx,
-				texture_path, &(global->assets.e_w), &(global->assets.e_h));
+		get_texture(global, texture_path, &(global->assets.e_texture));
 	else
 		return (free(texture_path), error_mess("Incorrect texture direction"));
 	return (free(texture_path), 0);

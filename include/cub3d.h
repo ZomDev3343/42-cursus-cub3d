@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/17 15:38:22 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/18 12:13:14 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define ROT_SPEED 0.05
 # define MOVE_SPEED 0.10
 
+struct	s_global;
+
 // Definition of player structure
 typedef struct player
 {
@@ -48,26 +50,30 @@ typedef struct player
 }	t_player;
 
 // Structure for the texture, color (assets) of map
+typedef struct s_image
+{
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
+	struct s_global	*global;
+}	t_image;
+
 typedef struct assets
 {
-	void	*n_texture;
-	int		n_w;
-	int		n_h;
-	void	*s_texture;
-	int		s_w;
-	int		s_h;
-	void	*w_texture;
-	int		w_w;
-	int		w_h;
-	void	*e_texture;
-	int		e_w;
-	int		e_h;
+	t_image	n_texture;
+	t_image	s_texture;
+	t_image	w_texture;
+	t_image	e_texture;
 	int		f_color[3];
 	int		c_color[3];
 }	t_assets;
 
 // All information of the game
-typedef struct global
+typedef struct s_global
 {
 	int			map[500][500];
 	t_player	player;
@@ -78,16 +84,6 @@ typedef struct global
 	int			win_height;
 	int			mouse_x;
 }	t_global;
-
-typedef struct s_image
-{
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	t_global	*global;
-}	t_image;
 
 typedef struct s_queue_node
 {
@@ -118,6 +114,20 @@ typedef struct s_circle
 	int	radius;
 	int	color;
 }	t_circle;
+
+typedef struct s_draw_wall
+{
+	int		line_height;
+	int		start_y;
+	int		end_y;
+	float	h;
+	int		color;
+	t_image	*texture;
+	float	wall_x;
+	int		tex_x;
+	float	step;
+	float	tex_pos;
+}	t_draw_wall;
 
 typedef struct s_ray
 {
@@ -150,6 +160,7 @@ int				is_map_closed(t_global *global);
 int				is_color_correct(int r, int g, int b);
 int				rgba(int r, int g, int b, int a);
 int				rgb(int r, int g, int b);
+int				get_pixel_color(t_image *img, int x, int y);
 
 /* Assets */
 
@@ -178,19 +189,26 @@ void			draw_circle(t_image *image, t_circle circle);
 t_square		make_square(int x1, int y1, int size, int color);
 t_circle		make_circle(int x, int y, int radius, int color);
 
+/* Draw Walls */
+
+void			draw_wall_stripe(t_draw_wall *drawinfos, t_image *screen,
+					int x);
+t_image			*choose_texture(t_global *global, int side);
+
 /* Render */
 
 int				render_cub3d(t_global *global);
 void			calculate_ray_dist(t_ray *ray, t_player *player, float cameraX);
 void			check_hit_walls(t_ray *ray, t_global *global, t_player *player);
-void			draw_stripe(t_ray *ray, t_image *image, int x);
+void			draw_stripe(t_ray *ray, t_image *image, int x,
+					t_player *player);
 
 /* Input */
 
 void			manage_right_camera_movement(t_player *player);
 void			manage_left_camera_movement(t_player *player);
-void			manage_strafe_movements(int map[500][500], t_player *player,
-					int keycode);
+void			manage_strafe_movements(int map[500][500],
+					t_player *player, int keycode);
 void			manage_forward_movements(int map[500][500],
 					t_player *player, int keycode);
 

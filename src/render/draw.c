@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:20:56 by truello           #+#    #+#             */
-/*   Updated: 2024/07/16 20:35:18 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/18 00:02:47 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,5 @@ void	draw_square(t_image *image, t_square square)
 		j = square.y1 - 1;
 		while (++j < square.y1 + square.size)
 			draw_pixel(image, i, j, square.color);
-	}
-}
-
-void	draw_circle(t_image *image, t_circle circle)
-{
-	float	i;
-
-	i = 0;
-	while (i < PI * 2)
-	{
-		draw_pixel(image, (circle.x * 32) + cosf(i) * circle.radius,
-			(circle.y * 32) + sinf(i) * circle.radius, circle.color);
-		i += PI / 360.0;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:44:33 by truello           #+#    #+#             */
-/*   Updated: 2024/07/16 20:25:03 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/18 01:00:53 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,9 @@ int	rgba(int r, int g, int b, int a)
 int	rgb(int r, int g, int b)
 {
 	return (rgba(r, g, b, 255));
+}
+
+int	get_pixel_color(t_image *img, int x, int y)
+{
+	return (((int *) img->addr)[img->height * y + x]);
 }

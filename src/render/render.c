@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/17 15:30:47 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/17 23:56:26 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 		else
 			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-		draw_stripe(ray, image, i);
+		draw_stripe(ray, image, i, player);
 		free(ray);
 	}
 }
