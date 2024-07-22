@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/18 15:01:28 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/22 16:00:35 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,36 +102,8 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 			ray2->perp_wall_dist = (ray2->side_dist_x - ray2->delta_dist_x);
 			draw_door(ray2, image, i, player);
 		}
+		free(ray2);
 		free(ray);
-	}
-}
-
-static void	add_minimap(t_image *image, t_global *global, t_player *player)
-{
-	int			i;
-	int			j;
-	t_square	square;
-
-	i = 0;
-	while (global->map[i][0] != -2)
-	{
-		j = 0;
-		while (global->map[i][j] != -2)
-		{
-			square.x1 = j * 10;
-			square.y1 = i * 10;
-			square.size = 10;
-			if (global->map[i][j] == 1)
-				square.color = rgb(255, 255, 255);
-			else
-				square.color = rgb(0, 0, 0);
-			draw_square(image, square);
-			if (i == (int)player->y && j == (int)player->x)
-				draw_square(image, make_square(j * 10 + 4, i * 10 + 4,
-						2, rgb(255, 0, 0)));
-			j++;
-		}
-		i++;
 	}
 }
 

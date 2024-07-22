@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/22 15:49:39 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/22 15:56:13 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ void			calculate_ray_dist(t_ray *ray, t_player *player, float cameraX);
 void			check_hit_walls(t_ray *ray, t_global *global, t_player *player);
 void			draw_stripe(t_ray *ray, t_image *image, int x,
 					t_player *player);
+void			add_minimap(t_image *image, t_global *global, t_player *player);
 
 /* Input */
 

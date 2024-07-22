@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:28:10 by truello           #+#    #+#             */
-/*   Updated: 2024/07/17 17:43:09 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/22 16:01:51 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,6 @@ void	free_assets(t_global *global)
 		mlx_destroy_image(global->mlx, global->assets.w_texture.img);
 	if (global->assets.e_texture.img)
 		mlx_destroy_image(global->mlx, global->assets.e_texture.img);
+	if (global->assets.door_texture.img)
+		mlx_destroy_image(global->mlx, global->assets.door_texture.img);
 }
