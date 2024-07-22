@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/18 15:01:49 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/22 15:49:39 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,17 @@
 # define KEY_S 115
 # define KEY_A 97
 # define KEY_D 100
+# define KEY_E 101
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
 # define MAP_WALL 1
+# define MAP_OPENED_DOOR 3
 # define MAP_CLOSED_DOOR 4
 
 # define ROT_SPEED 0.05
 # define MOVE_SPEED 0.10
+# define DOOR_DIST 0.1f
 
 struct	s_global;
 
@@ -68,7 +71,7 @@ typedef struct assets
 	t_image	s_texture;
 	t_image	w_texture;
 	t_image	e_texture;
-	t_image door_texture;
+	t_image	door_texture;
 	int		f_color[3];
 	int		c_color[3];
 }	t_assets;
@@ -184,7 +187,8 @@ void			init_global(t_global *global);
 
 /* Draw */
 
-void			get_texture(t_global *global, char *texture_path, t_image *texture);
+void			get_texture(t_global *global, char *texture_path,
+					t_image *texture);
 void			draw_pixel(t_image *img, int x, int y, int color);
 void			draw_square(t_image *image, t_square square);
 void			draw_circle(t_image *image, t_circle circle);
@@ -217,5 +221,7 @@ void			manage_strafe_movements(int map[500][500],
 					t_player *player, int keycode);
 void			manage_forward_movements(int map[500][500],
 					t_player *player, int keycode);
+void			door_input(int map[500][500], t_player *player);
+int				is_air(int map_case);
 
 #endif
