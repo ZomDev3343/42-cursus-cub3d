@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:30:32 by truello           #+#    #+#             */
-/*   Updated: 2024/07/17 14:59:07 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 14:57:20 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	init_player(t_global *global, char direction, int y, int x)
 	global->map[y][x] = 0;
 	global->player.x = (float) x;
 	global->player.y = (float) y;
+	global->player.move_x = 0;
+	global->player.move_y = 0;
 	set_player_direction(&(global->player), direction);
 }

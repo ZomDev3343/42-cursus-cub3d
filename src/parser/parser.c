@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:38 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/18 17:01:51 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 15:19:08 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	parse_map_assets(t_global *global, int fd)
 		free_tab(split_line);
 		i--;
 	}
-	get_texture(global, "./textures/wall_2.xpm", &(global->assets.door_texture));
+	get_texture(global, "./textures/wall_2.xpm",
+		&(global->assets.door_texture));
 	return (check_assets(global, fd));
 }
 

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/22 14:41:37 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 15:17:58 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	mouse_manage(int x, int y, t_global *global)
 	return (0);
 }
 
-static int	manage_input(int keycode, t_global *global)
+static int	manage_input_press(int keycode, t_global *global)
 {
 	if (keycode == 65307)
 		close_window(global);
@@ -48,9 +48,29 @@ static int	manage_input(int keycode, t_global *global)
 		manage_right_camera_movement(&(global->player));
 	if (keycode == KEY_E)
 		door_input(global->map, &(global->player));
-	manage_forward_movements(global->map, &(global->player), keycode);
-	manage_strafe_movements(global->map, &(global->player), keycode);
+	if (keycode == KEY_W)
+		global->player.move_y = 1;
+	if (keycode == KEY_S)
+		global->player.move_y = -1;
+	if (keycode == KEY_A)
+		global->player.move_x = -1;
+	if (keycode == KEY_D)
+		global->player.move_x = 1;
 	printf("Key pressed : %d\n", keycode);
+	return (0);
+}
+
+static int	manage_input_release(int keycode, t_global *global)
+{
+	if (keycode == KEY_W)
+		global->player.move_y = 0;
+	if (keycode == KEY_S)
+		global->player.move_y = 0;
+	if (keycode == KEY_A)
+		global->player.move_x = 0;
+	if (keycode == KEY_D)
+		global->player.move_x = 0;
+	printf("Key released : %d\n", keycode);
 	return (0);
 }
 
@@ -65,7 +85,9 @@ int	main(int ac, char **av)
 		return (free_global(&global), 1);
 	global.mlx_win = mlx_new_window(global.mlx, global.win_width,
 			global.win_height, "Cub3D by pow(Thomas, 2)");
-	mlx_hook(global.mlx_win, 2, 1L << 0, manage_input, &global);
+	mlx_do_key_autorepeatoff(global.mlx);
+	mlx_hook(global.mlx_win, 2, 1L << 0, manage_input_press, &global);
+	mlx_hook(global.mlx_win, 3, 1L << 1, manage_input_release, &global);
 	mlx_hook(global.mlx_win, 17, 0, close_window, &global);
 	mlx_hook(global.mlx_win, 6, 1L << 6, mouse_manage, &global);
 	mlx_loop_hook(global.mlx, render_cub3d, &global);

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:44 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/18 12:11:39 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 15:19:28 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	copy_line_map(t_global *global, int i, char *line)
 	j = 0;
 	while (line[j + 1])
 	{
-		if (((line[j] - '0') >= 0 && (line[j] - '0' <= 1)) || line[j] - '0' == 4)
+		if (((line[j] - '0') >= 0 && (line[j] - '0' <= 1))
+			|| line[j] - '0' == 4)
 			global->map[i][j] = line[j] - '0';
 		else if (line[j] == 'N' || line[j] == 'S'
 			|| line[j] == 'E' || line[j] == 'W')

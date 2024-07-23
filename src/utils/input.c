@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:23:41 by truello           #+#    #+#             */
-/*   Updated: 2024/07/22 15:45:33 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 15:10:37 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ int	is_air(int map_case)
 }
 
 void	manage_strafe_movements(int map[500][500], t_player *player,
-	int keycode)
+	int move)
 {
 	int	pos_x;
 	int	pos_y;
 
 	pos_x = (int)player->x;
 	pos_y = (int)player->y;
-	if (keycode == KEY_A)
+	if (move == -1)
 	{
 		if (is_air(map[pos_y][(int)(player->x + player->plane_x * MOVE_SPEED)]))
 			player->x += player->plane_x * MOVE_SPEED;
 		if (is_air(map[(int)(player->y + player->plane_y * MOVE_SPEED)][pos_x]))
 			player->y += player->plane_y * MOVE_SPEED;
 	}
-	if (keycode == KEY_D)
+	if (move == 1)
 	{
 		if (is_air(map[pos_y][(int)(player->x - player->plane_x * MOVE_SPEED)]))
 			player->x -= player->plane_x * MOVE_SPEED;
@@ -75,21 +75,21 @@ void	manage_strafe_movements(int map[500][500], t_player *player,
 }
 
 void	manage_forward_movements(int map[500][500], t_player *player,
-	int keycode)
+	int move)
 {
 	int	pos_x;
 	int	pos_y;
 
 	pos_x = (int)player->x;
 	pos_y = (int)player->y;
-	if (keycode == KEY_W)
+	if (move == 1)
 	{
 		if (is_air(map[pos_y][(int)(player->x + player->dir_x * MOVE_SPEED)]))
 			player->x += player->dir_x * MOVE_SPEED;
 		if (is_air(map[(int)(player->y + player->dir_y * MOVE_SPEED)][pos_x]))
 			player->y += player->dir_y * MOVE_SPEED;
 	}
-	if (keycode == KEY_S)
+	if (move == -1)
 	{
 		if (is_air(map[pos_y][(int)(player->x - player->dir_x * MOVE_SPEED)]))
 			player->x -= player->dir_x * MOVE_SPEED;

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/22 15:56:13 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 15:18:43 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct player
 	float	dir_y;
 	float	plane_x;
 	float	plane_y;
+	int		move_x;
+	int		move_y;
 }	t_player;
 
 // Structure for the texture, color (assets) of map
@@ -214,14 +216,18 @@ void			draw_stripe(t_ray *ray, t_image *image, int x,
 					t_player *player);
 void			add_minimap(t_image *image, t_global *global, t_player *player);
 
+/* Update */
+
+int				update_loop(t_global *global);
+
 /* Input */
 
 void			manage_right_camera_movement(t_player *player);
 void			manage_left_camera_movement(t_player *player);
 void			manage_strafe_movements(int map[500][500],
-					t_player *player, int keycode);
+					t_player *player, int move);
 void			manage_forward_movements(int map[500][500],
-					t_player *player, int keycode);
+					t_player *player, int move);
 void			door_input(int map[500][500], t_player *player);
 int				is_air(int map_case);
 

@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/22 16:00:35 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 15:17:28 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	render_cub3d(t_global *global)
 {
 	t_image	main_image;
 
+	update_loop(global);
 	main_image.global = global;
 	main_image.img = mlx_new_image(global->mlx, global->win_width,
 			global->win_height);
