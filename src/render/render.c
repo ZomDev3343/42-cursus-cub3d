@@ -6,72 +6,85 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/23 15:17:28 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:31:02 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void    check_hit_door(t_ray *ray, t_global *global, t_player *player)
+void	check_hit_door(t_ray *ray, t_global *global,
+	t_player *player)
 {
-        int     map_x;
-        int     map_y;
+	int	map_x;
+	int	map_y;
 
-        map_x = (int) player->x;
-        map_y = (int) player->y;
-        while (ray->hit == 0)
-        {
-                if (ray->side_dist_x < ray->side_dist_y)
-                {
-                        ray->side_dist_x += ray->delta_dist_x;
-                        map_x += ray->step_x;
-                }
-                else
-                {
-                        ray->side_dist_y += ray->delta_dist_y;
-                        map_y += ray->step_y;
-                }
-                if (global->map[map_y][map_x] == MAP_CLOSED_DOOR ||
-				global->map[map_y][map_x] == MAP_WALL)
+	map_x = (int) player->x;
+	map_y = (int) player->y;
+	while (ray->hit == 0)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-                        ray->hit = 1;
-			if (global->map[map_y][map_x] == MAP_CLOSED_DOOR)
-			{
-				ray->side_dist_x += ray->delta_dist_x / 2;
-				ray->side = 5;
-			}
+			ray->side_dist_x += ray->delta_dist_x;
+			map_x += ray->step_x;
 		}
-        }
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			map_y += ray->step_y;
+		}
+		if (!is_air(global->map[map_y][map_x]))
+		{
+			ray->hit = 1;
+			if (global->map[map_y][map_x] == MAP_CLOSED_DOOR)
+				return (ray->side_dist_x += ray->delta_dist_x / 2,
+					ray->side = 5, (void)0);
+		}
+	}
 }
 
-void    draw_door(t_ray *ray, t_image *image, int x, t_player *player)
+void	draw_door(t_ray *ray, t_image *image, int x, t_player *player)
 {
-        t_draw_wall     di;
+	t_draw_wall	di;
 
-        di.h = image->global->win_height;
+	di.h = image->global->win_height;
 	di.texture = &(image->global->assets.door_texture);
-        di.line_height = (int)(di.h / ray->perp_wall_dist);
-        di.start_y = -di.line_height / 2 + di.h / 2;
-        di.end_y = di.line_height / 2 + di.h / 2;
-        if (di.start_y < 0)
-                di.start_y = 0;
-        if (di.end_y >= di.h)
-                di.end_y = di.h - 1;
-        if (ray->side >= 2)
-                di.wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
-        else
-                di.wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
-        di.wall_x -= floorf(di.wall_x);
-        di.tex_x = (int)(di.wall_x * di.texture->width);
-        if (ray->side >= 2 && ray->ray_dir_x > 0)
-                di.tex_x = di.texture->height - di.tex_x - 1;
-        if (ray->side <= 1 && ray->ray_dir_y != 0)
-                di.tex_x = di.texture->height - di.tex_x - 1;
-        di.step = 1.0 * di.texture->height / di.line_height;
-        di.tex_pos = (di.start_y - di.h / 2 + di.line_height / 2) * di.step;
-        draw_wall_stripe(&di, image, x);
+	di.line_height = (int)(di.h / ray->perp_wall_dist);
+	di.start_y = -di.line_height / 2 + di.h / 2;
+	di.end_y = di.line_height / 2 + di.h / 2;
+	if (di.start_y < 0)
+		di.start_y = 0;
+	if (di.end_y >= di.h)
+		di.end_y = di.h - 1;
+	if (ray->side >= 2)
+		di.wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		di.wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
+	di.wall_x -= floorf(di.wall_x);
+	di.tex_x = (int)(di.wall_x * di.texture->width);
+	if (ray->side >= 2 && ray->ray_dir_x > 0)
+		di.tex_x = di.texture->height - di.tex_x - 1;
+	if (ray->side <= 1 && ray->ray_dir_y != 0)
+		di.tex_x = di.texture->height - di.tex_x - 1;
+	di.step = 1.0 * di.texture->height / di.line_height;
+	di.tex_pos = (di.start_y - di.h / 2 + di.line_height / 2) * di.step;
+	draw_wall_stripe(&di, image, x);
 }
 
+static void	door_raycast(t_image *image, t_global *global, t_player *player,
+	int i)
+{
+	t_ray	*ray;
+
+	ray = ft_calloc(1, sizeof(t_ray));
+	calculate_ray_dist(ray, player, 2 * i / ((float) global->win_width) - 1);
+	check_hit_door(ray, global, player);
+	if (ray->side == 5)
+	{
+		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+		draw_door(ray, image, i, player);
+	}
+	free(ray);
+}
 
 static void	render_raycast(t_image *image, t_global *global, t_player *player)
 {
@@ -92,17 +105,7 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 		draw_floor_and_ceiling(image, i);
 		draw_stripe(ray, image, i, player);
-
-
-		t_ray *ray2 = ft_calloc(1, sizeof(t_ray));
-		calculate_ray_dist(ray2, player, 2 * i / ((float) w) - 1);
-                check_hit_door(ray2, global, player);
-		if (ray2->side == 5)
-		{
-			ray2->perp_wall_dist = (ray2->side_dist_x - ray2->delta_dist_x);
-			draw_door(ray2, image, i, player);
-		}
-		free(ray2);
+		door_raycast(image, global, player, i);
 		free(ray);
 	}
 }
