@@ -22,7 +22,7 @@ int	check_assets(t_global *global, int fd)
 	return (0);
 }
 
-int	count_sprite(char **map)
+int	count_sprite(int map[500][500])
 {
 	int	x;
 	int	y;
@@ -50,7 +50,7 @@ int	is_sprite(int i)
 	return (i == 5);
 }
 
-int	get_sprite(t_global *global)
+void	get_sprite(t_global *global)
 {
 	int	x;
 	int	y;
@@ -60,17 +60,16 @@ int	get_sprite(t_global *global)
 	y = 0;
 	i = 0;
 	global->sprites = malloc(sizeof(t_sprite) * count_sprite(global->map));
-	while (map[y][0] != -2)
+	while (global->map[y][0] != -2)
         {
-                while(map[y][x] != -2)
+                while(global->map[y][x] != -2)
                 {
-			if (is_sprite(map[y][x]))
+			if (is_sprite(global->map[y][x]))
 			{
 				global->sprites[i].x = x;
 				global->sprites[i].y = y;
-                        	if (map[y][x] == 5)
-					global->sprites[i].texture = get_texture(global, "./textures/greenlight.xpm",
-							&(global->assets.door_texture));
+                        	if (global->map[y][x] == 5)
+					get_texture(global, "./textures/greenlight.xpm", &(global->sprites[i].texture));
 				i++;
 			}
                         x++;

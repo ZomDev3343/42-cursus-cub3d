@@ -55,7 +55,7 @@ int	copy_line_map(t_global *global, int i, char *line)
 	while (line[j + 1])
 	{
 		if (((line[j] - '0') >= 0 && (line[j] - '0' <= 1))
-			|| line[j] - '0' == 4)
+			|| line[j] - '0' == 4 || line[j] - '0' == 5)
 			global->map[i][j] = line[j] - '0';
 		else if (line[j] == 'N' || line[j] == 'S'
 			|| line[j] == 'E' || line[j] == 'W')

@@ -91,6 +91,7 @@ typedef struct s_global
 	int			map[500][500];
 	t_player	player;
 	t_assets	assets;
+	t_sprite	*sprites;
 	void		*mlx;
 	void		*mlx_win;
 	int			win_width;
@@ -167,6 +168,7 @@ int				copy_assets(t_global *global, char **split_line);
 int				must_skip_line(char *line);
 int				check_assets(t_global *global, int fd);
 int				is_map_closed(t_global *global);
+void			get_sprite(t_global *global);
 
 /* Colors */
 
