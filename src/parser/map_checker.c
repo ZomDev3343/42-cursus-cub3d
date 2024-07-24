@@ -14,7 +14,8 @@
 
 static int	is_case_valid(int value)
 {
-	return (value == 0 || value == 1 || value == 2 || value == 4);
+	return (value == 0 || value == 1 || value == 2
+			|| value == 4 || value == 5);
 }
 
 static int	is_enclosed(int map[500][500], t_queue_node *qnode)

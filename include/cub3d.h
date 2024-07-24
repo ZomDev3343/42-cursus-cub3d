@@ -78,6 +78,13 @@ typedef struct assets
 	int		c_color[3];
 }	t_assets;
 
+typedef struct  sprite
+{
+	int	x;
+	int	y;
+	t_image	texture;
+}	t_sprite;
+
 // All information of the game
 typedef struct s_global
 {
