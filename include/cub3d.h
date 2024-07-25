@@ -80,8 +80,8 @@ typedef struct assets
 
 typedef struct  sprite
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 	t_image	texture;
 }	t_sprite;
 
@@ -89,6 +89,7 @@ typedef struct  sprite
 typedef struct s_global
 {
 	int			map[500][500];
+	float			zbuffer[800];
 	t_player	player;
 	t_assets	assets;
 	t_sprite	*sprites;
@@ -97,6 +98,7 @@ typedef struct s_global
 	int			win_width;
 	int			win_height;
 	int			mouse_x;
+	int			n_sprites;
 }	t_global;
 
 typedef struct s_queue_node
@@ -169,6 +171,8 @@ int				must_skip_line(char *line);
 int				check_assets(t_global *global, int fd);
 int				is_map_closed(t_global *global);
 void			get_sprite(t_global *global);
+void			draw_sprite(t_global *global, t_image *image);
+
 
 /* Colors */
 

@@ -59,15 +59,16 @@ void	get_sprite(t_global *global)
 	x = 0;
 	y = 0;
 	i = 0;
-	global->sprites = malloc(sizeof(t_sprite) * count_sprite(global->map));
+	global->n_sprites = count_sprite(global->map);
+	global->sprites = malloc(sizeof(t_sprite) * global->n_sprites);
 	while (global->map[y][0] != -2)
         {
                 while(global->map[y][x] != -2)
                 {
 			if (is_sprite(global->map[y][x]))
 			{
-				global->sprites[i].x = x;
-				global->sprites[i].y = y;
+				global->sprites[i].x = y;
+				global->sprites[i].y = x;
                         	if (global->map[y][x] == 5)
 					get_texture(global, "./textures/greenlight.xpm", &(global->sprites[i].texture));
 				i++;

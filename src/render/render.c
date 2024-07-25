@@ -106,8 +106,10 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 		draw_floor_and_ceiling(image, i);
 		draw_stripe(ray, image, i, player);
 		door_raycast(image, global, player, i);
+		global->zbuffer[i] = ray->perp_wall_dist;
 		free(ray);
 	}
+	draw_sprite(global, image);
 }
 
 int	render_cub3d(t_global *global)
