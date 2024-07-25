@@ -71,7 +71,7 @@ void	draw_sprite(t_global *global, t_image *image)
 		//printf("planeX: %f, dirX: %f, planeY: %f, dirY: %f\n", global->player.plane_x, global->player.dir_x, global->player.plane_y, global->player.dir_y);
 
 		float invDet = 1.0 / (global->player.plane_y * global->player.dir_x - global->player.dir_y * global->player.plane_x);
-		float transformX = invDet * (global->player.dir_x * spriteX - global->player.dir_y * spriteY);
+		float transformX = -invDet * (global->player.dir_x * spriteX - global->player.dir_y * spriteY);
       		float transformY = invDet * (-global->player.plane_x * spriteX + global->player.plane_y * spriteY);
 		int spriteScreenX = (int)((global->win_width / 2) * (1 + transformX / transformY));
 
