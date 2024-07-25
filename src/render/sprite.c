@@ -67,6 +67,7 @@ void	draw_sprite(t_global *global, t_image *image)
 		float spriteX = global->sprites[spriteOrder[i]].x - global->player.y;
       		float spriteY = global->sprites[spriteOrder[i]].y - global->player.x;
 
+		//printf("Sprite %d, distance: %f\n", spriteOrder[i], spriteDistance[i]);
 		//printf("planeX: %f, dirX: %f, planeY: %f, dirY: %f\n", global->player.plane_x, global->player.dir_x, global->player.plane_y, global->player.dir_y);
 
 		float invDet = 1.0 / (global->player.plane_y * global->player.dir_x - global->player.dir_y * global->player.plane_x);
@@ -74,7 +75,7 @@ void	draw_sprite(t_global *global, t_image *image)
       		float transformY = invDet * (-global->player.plane_x * spriteX + global->player.plane_y * spriteY);
 		int spriteScreenX = (int)((global->win_width / 2) * (1 + transformX / transformY));
 
-		printf("%d w: %d, invDet : %f, transformX: %f, transformY: %f, spriteScreenX: %d\n",i, global->win_height, invDet, transformX, transformY, spriteScreenX);
+		printf("%d spriteX:%d transformX: %f, transformY: %f\n",i, spriteScreenX, transformX, transformY);
 		#define uDiv 1
       		#define vDiv 1
       		#define vMove 0.0
@@ -95,11 +96,16 @@ void	draw_sprite(t_global *global, t_image *image)
 		if(drawEndY >= global->win_height) drawEndY = global->win_height - 1;
 
 		int spriteWidth = int_abs((int) (global->win_height / (transformY))) / uDiv;
-		int	drawStartX;
-		if (spriteHeight == -2147483648)
-      			drawStartX = spriteWidth / 2 + spriteScreenX;
-		else
-			drawStartX = -spriteWidth / 2 + spriteScreenX;
+		
+
+      		int drawStartX = -spriteWidth / 2 + spriteScreenX;
+     // printf("drawStartX: %d, -spriteWidth: %d, spriteScreenX: %d\n", drawStartX, -spriteWidth, spriteScreenX);
+
+		//int	drawStartX;
+		//if (spriteHeight == -2147483648)
+      		//	drawStartX = spriteWidth / 2 + spriteScreenX;
+		//else
+		//	drawStartX = -spriteWidth / 2 + spriteScreenX;
       		if(drawStartX < 0) drawStartX = 0;
 
       		int drawEndX;
@@ -108,7 +114,8 @@ void	draw_sprite(t_global *global, t_image *image)
 		else
 			drawEndX = spriteWidth / 2 + spriteScreenX;
       		if(drawEndX > global->win_width) drawEndX = global->win_width;
-
+		
+		//printf("drawStartX = %d\n", drawStartX);
 		for(int stripe = drawStartX; stripe < drawEndX; stripe++)
       		{
 			int texX;
@@ -121,12 +128,17 @@ void	draw_sprite(t_global *global, t_image *image)
        			{
           			for(int y = drawStartY; y < drawEndY; y++)
           			{
+					(void) image;
 					int texY;
 					int d;
 						d = (y - vMoveScreen) * 256 - global->win_height * 128 + spriteHeight * 128;
             					texY = ((d * 64) / spriteHeight) / 256;
             				int color = get_pixel_color(&global->sprites[i].texture, texX, texY);
-            				if(color) draw_pixel(image, stripe, y, color);
+            				if(color)
+					{
+//						printf("y = %d, stripe = %d, color = %d\n", y, stripe, color);
+						draw_pixel(image, stripe, y, color);
+					}
           			}
         		}
       		}
