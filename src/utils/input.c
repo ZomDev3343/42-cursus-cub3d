@@ -45,9 +45,9 @@ void	manage_right_camera_movement(t_player *player)
 		* cos(ROT_SPEED);
 }
 
-int	is_air(int map_case)
+int	is_so(int map_case)
 {
-	return (map_case == 2 || map_case == MAP_OPENED_DOOR);
+	return (map_case == 1 || map_case == MAP_CLOSED_DOOR);
 }
 
 void	manage_strafe_movements(int map[500][500], t_player *player,
@@ -60,16 +60,16 @@ void	manage_strafe_movements(int map[500][500], t_player *player,
 	pos_y = (int)player->y;
 	if (move == -1)
 	{
-		if (is_air(map[pos_y][(int)(player->x + player->plane_x * MOVE_SPEED)]))
+		if (!is_so(map[pos_y][(int)(player->x + player->plane_x * MOVE_SPEED)]))
 			player->x += player->plane_x * MOVE_SPEED;
-		if (is_air(map[(int)(player->y + player->plane_y * MOVE_SPEED)][pos_x]))
+		if (!is_so(map[(int)(player->y + player->plane_y * MOVE_SPEED)][pos_x]))
 			player->y += player->plane_y * MOVE_SPEED;
 	}
 	if (move == 1)
 	{
-		if (is_air(map[pos_y][(int)(player->x - player->plane_x * MOVE_SPEED)]))
+		if (!is_so(map[pos_y][(int)(player->x - player->plane_x * MOVE_SPEED)]))
 			player->x -= player->plane_x * MOVE_SPEED;
-		if (is_air(map[(int)(player->y - player->plane_y * MOVE_SPEED)][pos_x]))
+		if (!is_so(map[(int)(player->y - player->plane_y * MOVE_SPEED)][pos_x]))
 			player->y -= player->plane_y * MOVE_SPEED;
 	}
 }
@@ -84,16 +84,16 @@ void	manage_forward_movements(int map[500][500], t_player *player,
 	pos_y = (int)player->y;
 	if (move == 1)
 	{
-		if (is_air(map[pos_y][(int)(player->x + player->dir_x * MOVE_SPEED)]))
+		if (!is_so(map[pos_y][(int)(player->x + player->dir_x * MOVE_SPEED)]))
 			player->x += player->dir_x * MOVE_SPEED;
-		if (is_air(map[(int)(player->y + player->dir_y * MOVE_SPEED)][pos_x]))
+		if (!is_so(map[(int)(player->y + player->dir_y * MOVE_SPEED)][pos_x]))
 			player->y += player->dir_y * MOVE_SPEED;
 	}
 	if (move == -1)
 	{
-		if (is_air(map[pos_y][(int)(player->x - player->dir_x * MOVE_SPEED)]))
+		if (!is_so(map[pos_y][(int)(player->x - player->dir_x * MOVE_SPEED)]))
 			player->x -= player->dir_x * MOVE_SPEED;
-		if (is_air(map[(int)(player->y - player->dir_y * MOVE_SPEED)][pos_x]))
+		if (!is_so(map[(int)(player->y - player->dir_y * MOVE_SPEED)][pos_x]))
 			player->y -= player->dir_y * MOVE_SPEED;
 	}
 }

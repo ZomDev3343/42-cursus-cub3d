@@ -125,6 +125,7 @@ int	parser(t_global *global, char **av)
 	if (parse_map_assets(global, fd) == 0)
 		if (parse_map_color(global, fd) == 0)
 			if (parse_map_matrice(global, fd) == 0)
-				return (printf("Parsing correct !\n"), get_sprite(global), close(fd), 0);
+				return (printf("Parsing correct !\n"),
+					get_sprite(global), close(fd), 0);
 	return (error_mess("Parsing incorrect !"), close(fd), 1);
 }

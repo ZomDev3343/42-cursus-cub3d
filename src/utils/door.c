@@ -36,18 +36,18 @@ void	door_input(int map[500][500], t_player *player)
 	else if (is_door(map[(int)py][(int)(px - DOOR_DIST)]) == 0)
 		toggle_door(&(map[(int)py][(int)(px - DOOR_DIST)]));
 	else if (is_door(map[(int)(py + DOOR_DIST)][(int)px]) == 0)
-		toggle_door(&(map[(int)(py - DOOR_DIST)][(int)px]));
+		toggle_door(&(map[(int)(py + DOOR_DIST)][(int)px]));
 	else if (is_door(map[(int)(py - DOOR_DIST)][(int)px]) == 0)
 		toggle_door(&(map[(int)(py - DOOR_DIST)][(int)px]));
 	if (map[(int)player->y][(int)player->x] == MAP_CLOSED_DOOR)
 	{
-		if (is_air(map[(int)player->y][(int)player->x + 1]))
+		if (!is_so(map[(int)player->y][(int)player->x + 1]))
 			player->x += 1.0f;
-		else if (is_air(map[(int)player->y][(int)player->x - 1]))
+		else if (!is_so(map[(int)player->y][(int)player->x - 1]))
 			player->x -= 1.0f;
-		else if (is_air(map[(int)player->y + 1][(int)player->x]))
+		else if (!is_so(map[(int)player->y + 1][(int)player->x]))
 			player->y += 1.0f;
-		else if (is_air(map[(int)player->y - 1][(int)player->x + 1]))
+		else if (!is_so(map[(int)player->y - 1][(int)player->x + 1]))
 			player->y -= 1.0f;
 	}
 }

@@ -85,6 +85,29 @@ typedef struct  sprite
 	t_image	texture;
 }	t_sprite;
 
+typedef	struct	s_sprite
+{
+    float	dist;
+    int		order;
+}	t_sprite_sort;
+
+typedef	struct	s_sprite_transform
+{
+    float	sprite_x;
+    float	sprite_y;
+    float	inv_det;
+    float	transform_x;
+    float	transform_y;
+    int		sprite_screen_x;
+    int		v_move_screen;
+    int		sprite_height;
+    int		draw_start_y;
+    int		draw_end_y;
+    int		sprite_width;
+    int		draw_start_x;
+    int		draw_end_x;
+}	t_sprite_transform;
+
 // All information of the game
 typedef struct s_global
 {
@@ -170,9 +193,23 @@ int				copy_assets(t_global *global, char **split_line);
 int				must_skip_line(char *line);
 int				check_assets(t_global *global, int fd);
 int				is_map_closed(t_global *global);
-void			get_sprite(t_global *global);
-void			draw_sprite(t_global *global, t_image *image);
+int				int_abs(int value);
 
+/* Sprites */
+void	get_sprite(t_global *global);
+void	draw_sprite(t_global *global, t_image *image);
+void    sort_sprite_distance(t_global *global, int *sprite_order,
+                          float *sprite_distance);
+void    calculate_transform_values(t_global *global, t_sprite_transform *transform,
+                                int sprite_order);
+void    calculate_draw_dimensions(t_global *global, t_sprite_transform *transform);
+void    swap_sprites(t_sprite_sort *a, t_sprite_sort *b);
+t_sprite_sort   *create_sprites(int *order, float *dist, int amount);
+void    sort_sprites_array(t_sprite_sort *sprites, int amount);
+void    update_arrays(t_sprite_sort *sprites, int *order, float *dist, int amount);
+void	sort_sprites(int *order, float *dist, int amount);
+void	initialize_sprite_distance(t_global *global, int *sprite_order,
+                                float *sprite_distance);
 
 /* Colors */
 
@@ -242,6 +279,6 @@ void			manage_strafe_movements(int map[500][500],
 void			manage_forward_movements(int map[500][500],
 					t_player *player, int move);
 void			door_input(int map[500][500], t_player *player);
-int				is_air(int map_case);
+int				is_so(int map_case);
 
 #endif

@@ -33,7 +33,7 @@ int	count_sprite(int map[500][500])
 	count = 0;
 	while (map[y][0] != -2)
 	{
-		while(map[y][x] != -2)
+		while (map[y][x] != -2)
 		{
 			if (map[y][x] == 5)
 				count++;
@@ -56,26 +56,24 @@ void	get_sprite(t_global *global)
 	int	y;
 	int	i;
 
-	x = 0;
-	y = 0;
+	x = -1;
+	y = -1;
 	i = 0;
 	global->n_sprites = count_sprite(global->map);
 	global->sprites = malloc(sizeof(t_sprite) * global->n_sprites);
-	while (global->map[y][0] != -2)
-        {
-                while(global->map[y][x] != -2)
-                {
+	while (global->map[++y][0] != -2)
+	{
+		while (global->map[y][++x] != -2)
+		{
 			if (is_sprite(global->map[y][x]))
 			{
-				global->sprites[i].x = y;
+				global->sprites[i].x = y + 0.5;
 				global->sprites[i].y = x;
-                        	if (global->map[y][x] == 5)
-					get_texture(global, "./textures/greenlight.xpm", &(global->sprites[i].texture));
-				i++;
+				if (global->map[y][x] == 5)
+					get_texture(global, "./textures/greenlight.xpm",
+						&(global->sprites[i++].texture));
 			}
-                        x++;
-                }
-                x = 0;
-                y++;
-        }
+		}
+		x = -1;
+	}
 }
