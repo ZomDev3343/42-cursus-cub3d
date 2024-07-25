@@ -20,8 +20,10 @@ t_image	*choose_texture(t_global *global, int side)
 		return (&(global->assets.s_texture));
 	else if (side == 2)
 		return (&(global->assets.e_texture));
-	else
+	else if (side == 3)
 		return (&(global->assets.w_texture));
+	else
+		return (&(global->assets.door_texture));
 }
 
 void	draw_wall_stripe(t_draw_wall *drawinfos, t_image *screen, int x)

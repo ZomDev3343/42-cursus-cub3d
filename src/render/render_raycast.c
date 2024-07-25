@@ -55,6 +55,14 @@ void	calculate_ray_dist(t_ray *ray, t_player *player, float cameraX)
 
 static void	check_side(t_ray *ray, int axis)
 {
+	if (axis == 3)
+	{
+		if (ray->side >= 2)
+			ray->side = 4;
+		else
+			ray->side = -1;
+		return ;
+	}
 	if (axis == 0)
 	{
 		if (ray->ray_dir_x > 0.0f)
@@ -96,8 +104,12 @@ void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
 			map_y += ray->step_y;
 			check_side(ray, 1);
 		}
-		if (global->map[map_y][map_x] == MAP_WALL)
+		if (global->map[map_y][map_x] == MAP_WALL || global->map[map_y][map_x] == MAP_CLOSED_DOOR)
+		{
 			ray->hit = 1;
+			if (global->map[map_y][map_x] == MAP_CLOSED_DOOR)
+				check_side(ray, 3);
+		}
 	}
 }
 
