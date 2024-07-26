@@ -38,7 +38,7 @@ int	parse_map_assets(t_global *global, int fd)
 		free_tab(split_line);
 		i--;
 	}
-	get_texture(global, "./textures/wall_2.xpm",
+	get_texture(global, "./textures/thomascub3d-2.xpm",
 		&(global->assets.door_texture));
 	return (check_assets(global, fd));
 }

@@ -63,4 +63,13 @@ void	init_global(t_global *global)
 	global->win_height = 600;
 	global->mouse_x = global->win_width / 2;
 	init_assets(&(global->assets));
+	global->fps = get_time();
+}
+
+long long	get_time(void)
+{
+	struct timeval	current_time;
+
+	gettimeofday(&current_time, NULL);
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }

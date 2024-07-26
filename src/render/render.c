@@ -102,6 +102,11 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 		free(ray);
 	}
 	draw_sprite(global, image);
+	if (get_time() - global->fps == 1666)
+	{
+
+		global->fps = get_time();
+	}
 }
 
 int	render_cub3d(t_global *global)

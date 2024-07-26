@@ -21,6 +21,7 @@
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 # include <math.h>
+# include <sys/time.h>
 
 # define PI 3.14159265
 # define KEY_W 119
@@ -122,6 +123,7 @@ typedef struct s_global
 	int			win_height;
 	int			mouse_x;
 	int			n_sprites;
+	long long		fps;
 }	t_global;
 
 typedef struct s_queue_node
@@ -210,6 +212,7 @@ void    update_arrays(t_sprite_sort *sprites, int *order, float *dist, int amoun
 void	sort_sprites(int *order, float *dist, int amount);
 void	initialize_sprite_distance(t_global *global, int *sprite_order,
                                 float *sprite_distance);
+long long	get_time(void);
 
 /* Colors */
 
