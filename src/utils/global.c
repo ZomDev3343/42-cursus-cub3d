@@ -6,7 +6,7 @@
 /*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:36:11 by truello           #+#    #+#             */
-/*   Updated: 2024/07/16 20:25:09 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/26 14:42:23 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,14 @@ void	init_global(t_global *global)
 {
 	global->mlx = mlx_init();
 	if (!global->mlx)
-		printf("fmweoghoewhg\n");
+		printf("Error: MLX init error\n");
 	global->mlx_win = NULL;
 	global->win_width = 800;
 	global->win_height = 600;
 	global->mouse_x = global->win_width / 2;
 	init_assets(&(global->assets));
 	global->fps = get_time();
+	global->deltatime = 0;
 }
 
 long long	get_time(void)

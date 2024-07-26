@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:18:18 by truello           #+#    #+#             */
-/*   Updated: 2024/07/23 16:31:02 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:40:23 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,9 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 		free(ray);
 	}
 	draw_sprite(global, image);
-	if (get_time() - global->fps == 1666)
-	{
-
-		global->fps = get_time();
-	}
+	global->old_fps = global->fps;
+	global->fps = get_time();
+	global->deltatime = (global->fps - global->old_fps) / 1000.0;
 }
 
 int	render_cub3d(t_global *global)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/23 15:33:16 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:54:32 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define MAP_OPENED_DOOR 3
 # define MAP_CLOSED_DOOR 4
 
-# define ROT_SPEED 0.05
-# define MOVE_SPEED 0.10
+# define ROT_SPEED 3.5
+# define MOVE_SPEED 7.5
 # define DOOR_DIST 0.1f
 
 struct	s_global;
@@ -113,7 +113,7 @@ typedef	struct	s_sprite_transform
 typedef struct s_global
 {
 	int			map[500][500];
-	float			zbuffer[800];
+	float		zbuffer[800];
 	t_player	player;
 	t_assets	assets;
 	t_sprite	*sprites;
@@ -123,7 +123,9 @@ typedef struct s_global
 	int			win_height;
 	int			mouse_x;
 	int			n_sprites;
-	long long		fps;
+	long long	fps;
+	long long	old_fps;
+	double		deltatime;
 }	t_global;
 
 typedef struct s_queue_node
@@ -275,12 +277,13 @@ int				update_loop(t_global *global);
 
 /* Input */
 
-void			manage_right_camera_movement(t_player *player);
-void			manage_left_camera_movement(t_player *player);
+void			manage_right_camera_movement(t_player *player,
+					double deltatime);
+void			manage_left_camera_movement(t_player *player, double deltatime);
 void			manage_strafe_movements(int map[500][500],
-					t_player *player, int move);
+					t_player *player, int move, double deltatime);
 void			manage_forward_movements(int map[500][500],
-					t_player *player, int move);
+					t_player *player, int move, double deltatime);
 void			door_input(int map[500][500], t_player *player);
 int				is_so(int map_case);
 

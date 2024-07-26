@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:28:27 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/23 15:56:41 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:50:12 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static int	mouse_manage(int x, int y, t_global *global)
 	if (x == global->mouse_x)
 		return (0);
 	if (x < global->mouse_x)
-		manage_left_camera_movement(&(global->player));
+		manage_left_camera_movement(&(global->player), global->deltatime);
 	else if (x > global->mouse_x)
-		manage_right_camera_movement(&(global->player));
+		manage_right_camera_movement(&(global->player), global->deltatime);
 	global->mouse_x = x;
 	return (0);
 }
@@ -43,9 +43,9 @@ static int	manage_input_press(int keycode, t_global *global)
 	if (keycode == 65307)
 		close_window(global);
 	if (keycode == KEY_LEFT)
-		manage_left_camera_movement(&(global->player));
+		manage_left_camera_movement(&(global->player), global->deltatime);
 	if (keycode == KEY_RIGHT)
-		manage_right_camera_movement(&(global->player));
+		manage_right_camera_movement(&(global->player), global->deltatime);
 	if (keycode == KEY_E)
 		door_input(global->map, &(global->player));
 	if (keycode == KEY_W)
