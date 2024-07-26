@@ -69,6 +69,7 @@ void	get_sprite(t_global *global)
 			{
 				global->sprites[i].x = y + 0.5;
 				global->sprites[i].y = x;
+				global->sprites[i].state = 0;
 				if (global->map[y][x] == 5)
 					get_texture(global, "./textures/greenlight.xpm",
 						&(global->sprites[i++].texture));

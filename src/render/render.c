@@ -102,6 +102,7 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 		free(ray);
 	}
 	draw_sprite(global, image);
+	switch_texture(global);
 	global->old_fps = global->fps;
 	global->fps = get_time();
 	global->deltatime = (global->fps - global->old_fps) / 1000.0;

@@ -12,36 +12,33 @@
 
 #include "../../include/cub3d.h"
 
-/*
- * Print_global a print global struct information function
- *
- * return void
- * */
-void	print_global(t_global *global)
+void	switch_texture(t_global *global)
 {
 	int	i;
-	int	j;
 
-	i = 0;
-	printf("====Map====\n");
-	while (global->map[i][0] != -2)
+	i = -1;
+	if (get_time() - global->time >= 1666)
 	{
-		j = 0;
-		while (global->map[i][j] != -2)
+		while (++i < global->n_sprites)
 		{
-			printf("%d", global->map[i][j]);
-			j++;
+			if (global->sprites[i].state == 0)
+				get_texture(global, "./textures/greenlight1.xpm",
+					&(global->sprites[i].texture));
+			else if (global->sprites[i].state == 1)
+				get_texture(global, "./textures/greenlight2.xpm",
+					&(global->sprites[i].texture));
+			else if (global->sprites[i].state == 2)
+				get_texture(global, "./textures/greenlight3.xpm",
+					&(global->sprites[i].texture));
+			else
+				get_texture(global, "./textures/greenlight.xpm",
+					&(global->sprites[i].texture));
+			global->sprites[i].state++;
+			if (global->sprites[i].state > 3)
+				global->sprites[i].state = 0;
 		}
-		printf("\n");
-		i++;
+		global->time = get_time();
 	}
-	printf("====Colors====\n");
-	printf("%d:%d:%d\n", global->assets.f_color[0],
-		global->assets.f_color[1], global->assets.f_color[2]);
-	printf("%d:%d:%d\n", global->assets.c_color[0],
-		global->assets.c_color[1], global->assets.c_color[2]);
-	printf("====Player====\n");
-	printf("x = %f, y = %f\n", global->player.x, global->player.y);
 }
 
 void	free_global(t_global *global)
@@ -64,6 +61,7 @@ void	init_global(t_global *global)
 	global->mouse_x = global->win_width / 2;
 	init_assets(&(global->assets));
 	global->fps = get_time();
+	global->time = get_time();
 	global->deltatime = 0;
 }
 

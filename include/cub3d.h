@@ -81,6 +81,7 @@ typedef struct assets
 
 typedef struct  sprite
 {
+	int	state;
 	float	x;
 	float	y;
 	t_image	texture;
@@ -124,6 +125,7 @@ typedef struct s_global
 	int			mouse_x;
 	int			n_sprites;
 	long long	fps;
+	long long	time;
 	long long	old_fps;
 	double		deltatime;
 }	t_global;
@@ -215,6 +217,7 @@ void	sort_sprites(int *order, float *dist, int amount);
 void	initialize_sprite_distance(t_global *global, int *sprite_order,
                                 float *sprite_distance);
 long long	get_time(void);
+void		switch_texture(t_global *global);
 
 /* Colors */
 
@@ -238,7 +241,6 @@ int				is_queue_empty(t_queue *queue);
 
 /* Global */
 
-void			print_global(t_global *global);
 void			free_global(t_global *global);
 void			init_global(t_global *global);
 
