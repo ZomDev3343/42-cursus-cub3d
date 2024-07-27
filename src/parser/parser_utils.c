@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:44 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/23 15:19:28 by truello          ###   ########.fr       */
+/*   Updated: 2024/07/27 13:06:54 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	copy_line_map(t_global *global, int i, char *line)
 			global->map[i][j] = -1;
 		else
 			return (1);
+		global->map[i + 1][j] = -1;
 		j++;
 	}
 	global->map[i][j] = -2;

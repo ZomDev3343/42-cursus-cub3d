@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas.rba <thomas.rba@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:37:38 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/26 00:06:09 by thomas.rba       ###   ########.fr       */
+/*   Updated: 2024/07/27 12:35:27 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	parse_map_matrice(t_global *global, int fd)
 		i++;
 	}
 	global->map[i][0] = -2;
+	if (global->player.x < 0)
+		return (1);
 	return (0);
 }
 

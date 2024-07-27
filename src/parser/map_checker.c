@@ -6,7 +6,7 @@
 /*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:53:38 by truello           #+#    #+#             */
-/*   Updated: 2024/07/16 20:23:04 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/27 13:04:49 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	is_enclosed(int map[500][500], t_queue_node *qnode)
 	if (!is_case_valid(map[qnode->y][qnode->x + 1]))
 		return (1);
 	if (qnode->x > 0 && !is_case_valid(map[qnode->y][qnode->x - 1]))
+		return (1);
+	if (map[qnode->y + 1][0] == -2 && qnode->value == 0)
 		return (1);
 	if (map[qnode->y + 1][0] != -2
 			&& !is_case_valid(map[qnode->y + 1][qnode->x]))
@@ -67,7 +69,9 @@ int	is_map_closed(t_global *global)
 {
 	int	i;
 	int	j;
+	int	has_two;
 
+	has_two = 0;
 	flood_fill(global->map, 0, 0);
 	i = 0;
 	while (global->map[i][0] != -2)
@@ -77,9 +81,15 @@ int	is_map_closed(t_global *global)
 		{
 			if (global->map[i][j] == 0)
 				return (error_mess("The given map is not correctly closed !"));
+			if (global->map[i][j] == 2)
+				has_two = 1;
+			printf("%d",  global->map[i][j]);
 			j++;
 		}
+		printf("\n");
 		i++;
 	}
+	if (!has_two)
+		return (error_mess("The given map is not correctly closed !"));
 	return (0);
 }

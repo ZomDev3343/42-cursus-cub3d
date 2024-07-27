@@ -6,7 +6,7 @@
 /*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:36:11 by truello           #+#    #+#             */
-/*   Updated: 2024/07/26 14:42:23 by tohma            ###   ########.fr       */
+/*   Updated: 2024/07/27 12:34:38 by tohma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	init_global(t_global *global)
 	init_assets(&(global->assets));
 	global->fps = get_time();
 	global->time = get_time();
+	global->player.x = -1;
 	global->deltatime = 0;
 }
 
