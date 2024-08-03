@@ -36,8 +36,8 @@ static void	set_player_direction(t_player *player, char direction)
 void	init_player(t_global *global, char direction, int y, int x)
 {
 	global->map[y][x] = 0;
-	global->player.x = (float) x;
-	global->player.y = (float) y;
+	global->player.x = (float) x + 0.5;
+	global->player.y = (float) y + 0.5;
 	global->player.move_x = 0;
 	global->player.move_y = 0;
 	set_player_direction(&(global->player), direction);

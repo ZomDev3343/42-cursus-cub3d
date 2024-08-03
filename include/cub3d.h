@@ -183,8 +183,12 @@ typedef struct s_ray
 	float	delta_dist_x;
 	float	delta_dist_y;
 	float	perp_wall_dist;
+	float   WallXOffSet;
+        float   WallYOffSet;
 	int		step_x;
 	int		step_y;
+	int		mapX;
+	int		mapY;
 	int		hit;
 	int		side;
 }	t_ray;

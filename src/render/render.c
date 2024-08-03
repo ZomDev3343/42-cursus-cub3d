@@ -93,9 +93,9 @@ static void	render_raycast(t_image *image, t_global *global, t_player *player)
 		calculate_ray_dist(ray, player, 2 * i / ((float) w) - 1);
 		check_hit_walls(ray, global, player);
 		if (ray->side >= 2)
-			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
-		else
-			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+                        ray->perp_wall_dist = (ray->mapX - global->player.x + ray->WallXOffSet + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+                else if (ray->side < 2)
+                        ray->perp_wall_dist = (ray->mapY - global->player.y + ray->WallXOffSet + (1 - ray->step_y) / 2) / ray->ray_dir_y;
 		draw_floor_and_ceiling(image, i);
 		draw_stripe(ray, image, i, player);
 		global->zbuffer[i] = ray->perp_wall_dist;
