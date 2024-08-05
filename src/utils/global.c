@@ -12,6 +12,15 @@
 
 #include "../../include/cub3d.h"
 
+void	calc_perp_wall_dist(t_ray *ray, t_global *global)
+{
+	ray->perp_wall_dist = (ray->mapX - global->player.x
+			+ ray->WallXOffSet + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+	if (ray->side < 2)
+		ray->perp_wall_dist = (ray->mapY - global->player.y
+				+ ray->WallXOffSet + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+}
+
 void	switch_texture(t_global *global)
 {
 	int	i;

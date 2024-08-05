@@ -196,6 +196,7 @@ typedef struct s_ray
 int				parser(t_global *global, char **av);
 int				error_mess(char *str);
 void			free_tab(char **tab);
+void			edit_cord_for_door(t_ray *ray);
 int				copy_color(t_global *global, char **split_color, char *color);
 void			init_player(t_global *global, char direction, int y, int x);
 int				copy_line_map(t_global *global, int i, char *line);
@@ -206,6 +207,8 @@ int				is_map_closed(t_global *global);
 int				int_abs(int value);
 
 /* Sprites */
+void    check_side(t_ray *ray, int axis);
+void    calc_perp_wall_dist(t_ray *ray, t_global *global);
 void	get_sprite(t_global *global);
 void	draw_sprite(t_global *global, t_image *image);
 void    sort_sprite_distance(t_global *global, int *sprite_order,

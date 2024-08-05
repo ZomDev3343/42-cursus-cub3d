@@ -41,3 +41,29 @@ void	draw_wall_stripe(t_draw_wall *drawinfos, t_image *screen, int x)
 		draw_pixel(screen, x, y, color);
 	}
 }
+
+void	edit_cord_for_door(t_ray *ray)
+{
+	if (ray->side < 2)
+	{
+		check_side(ray, 3);
+		ray->WallXOffSet = 0.5 * ray->step_y;
+		if (ray->side_dist_y - ray->delta_dist_y / 2 >= ray->side_dist_x)
+		{
+			ray->mapX += ray->step_x;
+			ray->WallXOffSet = 0;
+			check_side(ray, 0);
+		}
+	}
+	else
+	{
+		check_side(ray, 3);
+		ray->WallXOffSet = 0.5 * ray->step_x;
+		if (ray->side_dist_x - ray->delta_dist_x / 2 >= ray->side_dist_y)
+		{
+			ray->mapY += ray->step_y;
+			ray->WallXOffSet = 0;
+			check_side(ray, 1);
+		}
+	}
+}

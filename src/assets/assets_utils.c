@@ -18,6 +18,7 @@ void	init_assets(t_assets *assets)
 	assets->s_texture.img = NULL;
 	assets->w_texture.img = NULL;
 	assets->e_texture.img = NULL;
+	assets->door_texture.img = NULL;
 }
 
 void	free_assets(t_global *global)
@@ -32,5 +33,4 @@ void	free_assets(t_global *global)
 		mlx_destroy_image(global->mlx, global->assets.e_texture.img);
 	if (global->assets.door_texture.img)
 		mlx_destroy_image(global->mlx, global->assets.door_texture.img);
-	
 }

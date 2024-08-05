@@ -83,7 +83,6 @@ int	is_map_closed(t_global *global)
 				return (error_mess("The given map is not correctly closed !"));
 			if (global->map[i][j] == 2)
 				has_two = 1;
-			printf("%d",  global->map[i][j]);
 			j++;
 		}
 		printf("\n");

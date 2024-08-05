@@ -53,7 +53,7 @@ void	calculate_ray_dist(t_ray *ray, t_player *player, float cameraX)
 	calculate_side_dist(ray, player);
 }
 
-static void	check_side(t_ray *ray, int axis)
+void	check_side(t_ray *ray, int axis)
 {
 	if (axis == 3)
 	{
@@ -83,89 +83,33 @@ static void	check_side(t_ray *ray, int axis)
 	2 : E
 	3 : W
 */
-/*void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
-{
-	int	map_x;
-	int	map_y;
 
-	map_x = (int) player->x;
-	map_y = (int) player->y;
+void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
+{
+	ray->mapX = (int) player->x;
+	ray->mapY = (int) player->y;
+	ray->WallXOffSet = 0;
+	ray->WallYOffSet = 0;
 	while (ray->hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
-			map_x += ray->step_x;
+			ray->mapX += ray->step_x;
 			check_side(ray, 0);
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
-			map_y += ray->step_y;
+			ray->mapY += ray->step_y;
 			check_side(ray, 1);
 		}
-		if (global->map[map_y][map_x] == MAP_WALL
-				|| global->map[map_y][map_x] == MAP_CLOSED_DOOR)
+		if (global->map[ray->mapY][ray->mapX] == MAP_WALL
+			|| global->map[ray->mapY][ray->mapX] == MAP_CLOSED_DOOR)
 			ray->hit = 1;
-		if (global->map[map_y][map_x] == MAP_CLOSED_DOOR)
-			check_side(ray, 3);
+		if (global->map[ray->mapY][ray->mapX] == MAP_CLOSED_DOOR)
+			edit_cord_for_door(ray);
 	}
-}*/
-
-void    check_hit_walls(t_ray *ray, t_global *global, t_player *player)
-{
-        ray->mapX = (int) player->x;
-        ray->mapY = (int) player->y;
-        ray->WallXOffSet = 0;
-        ray->WallYOffSet = 0;
-        while (ray->hit == 0)
-        {
-                if (ray->side_dist_x < ray->side_dist_y)
-                {
-                        ray->side_dist_x += ray->delta_dist_x;
-                        ray->mapX += ray->step_x;
-                        check_side(ray, 0);
-                }
-                else
-                {
-                        ray->side_dist_y += ray->delta_dist_y;
-                        ray->mapY += ray->step_y;
-                        check_side(ray, 1);
-                }
-                if (global->map[ray->mapY][ray->mapX] == MAP_WALL
-                                || global->map[ray->mapY][ray->mapX] == MAP_CLOSED_DOOR)
-                        ray->hit = 1;
-                if (global->map[ray->mapY][ray->mapX] == MAP_CLOSED_DOOR)
-                {
-                        if (ray->side < 2)
-                        {
-                                check_side(ray, 3);
-                                ray->WallXOffSet = 0.5 * ray->step_y;
-                                if (ray->side_dist_y - ray->delta_dist_y / 2 < ray->side_dist_x) {
-                                }
-                                else
-                                {
-                                        ray->mapX += ray->step_x;
-                                        ray->WallXOffSet = 0;
-                                        check_side(ray, 0);
-                                }
-                        }
-                        else
-                        {
-                                check_side(ray, 3);
-                                ray->WallXOffSet = 0.5 * ray->step_x;
-                                if (ray->side_dist_x - ray->delta_dist_x / 2 < ray->side_dist_y) {
-                                }
-                                else
-                                {
-                                        ray->mapY += ray->step_y;
-                                        ray->WallXOffSet = 0;
-                                        check_side(ray, 1);
-                                }
-                        }
-                }
-
-        }
 }
 
 void	draw_stripe(t_ray *ray, t_image *image, int x, t_player *player)
