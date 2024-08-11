@@ -30,6 +30,7 @@ void	switch_texture(t_global *global)
 	{
 		while (++i < global->n_sprites)
 		{
+			mlx_destroy_image(global->mlx, global->sprites[i].texture.img);
 			if (global->sprites[i].state == 0)
 				get_texture(global, "./textures/greenlight1.xpm",
 					&(global->sprites[i].texture));
@@ -42,8 +43,7 @@ void	switch_texture(t_global *global)
 			else
 				get_texture(global, "./textures/greenlight.xpm",
 					&(global->sprites[i].texture));
-			global->sprites[i].state++;
-			if (global->sprites[i].state > 3)
+			if (++global->sprites[i].state > 3)
 				global->sprites[i].state = 0;
 		}
 		global->time = get_time();
@@ -52,11 +52,17 @@ void	switch_texture(t_global *global)
 
 void	free_global(t_global *global)
 {
+	int	i;
+
+	i = -1;
+	while (++i < global->n_sprites)
+		mlx_destroy_image(global->mlx, global->sprites[i].texture.img);
 	free_assets(global);
 	if (global->mlx_win)
 		mlx_destroy_window(global->mlx, global->mlx_win);
 	mlx_destroy_display(global->mlx);
 	free(global->mlx);
+	free(global->sprites);
 }
 
 void	init_global(t_global *global)
