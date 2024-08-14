@@ -60,9 +60,12 @@ void	free_global(t_global *global)
 	free_assets(global);
 	if (global->mlx_win)
 		mlx_destroy_window(global->mlx, global->mlx_win);
-	mlx_destroy_display(global->mlx);
-	free(global->mlx);
-	free(global->sprites);
+	if (global->mlx)
+		mlx_destroy_display(global->mlx);
+	if (global->mlx)
+		free(global->mlx);
+	if (global->sprites)
+		free(global->sprites);
 }
 
 void	init_global(t_global *global)

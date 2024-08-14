@@ -73,6 +73,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (ft_error("Usage: ./cube3d <filename.cub>"));
+	if (ft_strcmp(av[1] + (ft_strlen(av[1]) - 4), ".cub") == 0)
+		return (error_mess("Invalid file type"));
 	init_global(&global);
 	if (parser(&global, av) || is_map_closed(&global))
 		return (free_global(&global), 1);
