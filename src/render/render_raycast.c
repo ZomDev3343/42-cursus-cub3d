@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:07:55 by truello           #+#    #+#             */
-/*   Updated: 2024/07/23 16:24:44 by truello          ###   ########.fr       */
+/*   Updated: 2024/08/15 11:54:43 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,28 +86,28 @@ void	check_side(t_ray *ray, int axis)
 
 void	check_hit_walls(t_ray *ray, t_global *global, t_player *player)
 {
-	ray->mapX = (int) player->x;
-	ray->mapY = (int) player->y;
-	ray->WallXOffSet = 0;
-	ray->WallYOffSet = 0;
+	ray->map_x = (int) player->x;
+	ray->map_y = (int) player->y;
+	ray->wall_xoffset = 0;
+	ray->wall_yoffset = 0;
 	while (ray->hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
-			ray->mapX += ray->step_x;
+			ray->map_x += ray->step_x;
 			check_side(ray, 0);
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
-			ray->mapY += ray->step_y;
+			ray->map_y += ray->step_y;
 			check_side(ray, 1);
 		}
-		if (global->map[ray->mapY][ray->mapX] == MAP_WALL
-			|| global->map[ray->mapY][ray->mapX] == MAP_CLOSED_DOOR)
+		if (global->map[ray->map_y][ray->map_x] == MAP_WALL
+			|| global->map[ray->map_y][ray->map_x] == MAP_CLOSED_DOOR)
 			ray->hit = 1;
-		if (global->map[ray->mapY][ray->mapX] == MAP_CLOSED_DOOR)
+		if (global->map[ray->map_y][ray->map_x] == MAP_CLOSED_DOOR)
 			edit_cord_for_door(ray);
 	}
 }

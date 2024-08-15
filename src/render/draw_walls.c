@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 23:58:45 by truello           #+#    #+#             */
-/*   Updated: 2024/07/18 01:06:10 by truello          ###   ########.fr       */
+/*   Updated: 2024/08/15 11:54:38 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ void	edit_cord_for_door(t_ray *ray)
 	if (ray->side < 2)
 	{
 		check_side(ray, 3);
-		ray->WallXOffSet = 0.5 * ray->step_y;
+		ray->wall_xoffset = 0.5 * ray->step_y;
 		if (ray->side_dist_y - ray->delta_dist_y / 2 >= ray->side_dist_x)
 		{
-			ray->mapX += ray->step_x;
-			ray->WallXOffSet = 0;
+			ray->map_x += ray->step_x;
+			ray->wall_xoffset = 0;
 			check_side(ray, 0);
 		}
 	}
 	else
 	{
 		check_side(ray, 3);
-		ray->WallXOffSet = 0.5 * ray->step_x;
+		ray->wall_xoffset = 0.5 * ray->step_x;
 		if (ray->side_dist_x - ray->delta_dist_x / 2 >= ray->side_dist_y)
 		{
-			ray->mapY += ray->step_y;
-			ray->WallXOffSet = 0;
+			ray->map_y += ray->step_y;
+			ray->wall_xoffset = 0;
 			check_side(ray, 1);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:36:11 by truello           #+#    #+#             */
-/*   Updated: 2024/07/27 12:34:38 by tohma            ###   ########.fr       */
+/*   Updated: 2024/08/15 11:54:38 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	calc_perp_wall_dist(t_ray *ray, t_global *global)
 {
-	ray->perp_wall_dist = (ray->mapX - global->player.x
-			+ ray->WallXOffSet + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+	ray->perp_wall_dist = (ray->map_x - global->player.x
+			+ ray->wall_xoffset + (1 - ray->step_x) / 2) / ray->ray_dir_x;
 	if (ray->side < 2)
-		ray->perp_wall_dist = (ray->mapY - global->player.y
-				+ ray->WallXOffSet + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+		ray->perp_wall_dist = (ray->map_y - global->player.y
+				+ ray->wall_xoffset + (1 - ray->step_y) / 2) / ray->ray_dir_y;
 }
 
 void	switch_texture(t_global *global)

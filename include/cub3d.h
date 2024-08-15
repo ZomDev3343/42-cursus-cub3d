@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tohma <tohma@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:29:03 by tohma             #+#    #+#             */
-/*   Updated: 2024/07/26 14:54:32 by tohma            ###   ########.fr       */
+/*   Updated: 2024/08/15 11:58:23 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,35 +79,35 @@ typedef struct assets
 	int		c_color[3];
 }	t_assets;
 
-typedef struct  sprite
+typedef struct sprite
 {
-	int	state;
+	int		state;
 	float	x;
 	float	y;
 	t_image	texture;
 }	t_sprite;
 
-typedef	struct	s_sprite
+typedef struct s_sprite
 {
-    float	dist;
-    int		order;
+	float	dist;
+	int		order;
 }	t_sprite_sort;
 
-typedef	struct	s_sprite_transform
+typedef struct s_sprite_transform
 {
-    float	sprite_x;
-    float	sprite_y;
-    float	inv_det;
-    float	transform_x;
-    float	transform_y;
-    int		sprite_screen_x;
-    int		v_move_screen;
-    int		sprite_height;
-    int		draw_start_y;
-    int		draw_end_y;
-    int		sprite_width;
-    int		draw_start_x;
-    int		draw_end_x;
+	float	sprite_x;
+	float	sprite_y;
+	float	inv_det;
+	float	transform_x;
+	float	transform_y;
+	int		sprite_screen_x;
+	int		v_move_screen;
+	int		sprite_height;
+	int		draw_start_y;
+	int		draw_end_y;
+	int		sprite_width;
+	int		draw_start_x;
+	int		draw_end_x;
 }	t_sprite_transform;
 
 // All information of the game
@@ -183,12 +183,12 @@ typedef struct s_ray
 	float	delta_dist_x;
 	float	delta_dist_y;
 	float	perp_wall_dist;
-	float   WallXOffSet;
-        float   WallYOffSet;
+	float	wall_xoffset;
+	float	wall_yoffset;
 	int		step_x;
 	int		step_y;
-	int		mapX;
-	int		mapY;
+	int		map_x;
+	int		map_y;
 	int		hit;
 	int		side;
 }	t_ray;
@@ -207,24 +207,26 @@ int				is_map_closed(t_global *global);
 int				int_abs(int value);
 
 /* Sprites */
-void    check_side(t_ray *ray, int axis);
-void    calc_perp_wall_dist(t_ray *ray, t_global *global);
-void	get_sprite(t_global *global);
-void	draw_sprite(t_global *global, t_image *image);
-void    sort_sprite_distance(t_global *global, int *sprite_order,
-                          float *sprite_distance);
-void    calculate_transform_values(t_global *global, t_sprite_transform *transform,
-                                int sprite_order);
-void    calculate_draw_dimensions(t_global *global, t_sprite_transform *transform);
-void    swap_sprites(t_sprite_sort *a, t_sprite_sort *b);
-t_sprite_sort   *create_sprites(int *order, float *dist, int amount);
-void    sort_sprites_array(t_sprite_sort *sprites, int amount);
-void    update_arrays(t_sprite_sort *sprites, int *order, float *dist, int amount);
-void	sort_sprites(int *order, float *dist, int amount);
-void	initialize_sprite_distance(t_global *global, int *sprite_order,
-                                float *sprite_distance);
-long long	get_time(void);
-void		switch_texture(t_global *global);
+void			check_side(t_ray *ray, int axis);
+void			calc_perp_wall_dist(t_ray *ray, t_global *global);
+void			get_sprite(t_global *global);
+void			draw_sprite(t_global *global, t_image *image);
+void			sort_sprite_distance(t_global *global, int *sprite_order,
+					float *sprite_distance);
+void			calculate_transform_values(t_global *global,
+					t_sprite_transform *transform, int sprite_order);
+void			calculate_draw_dimensions(t_global *global,
+					t_sprite_transform *transform);
+void			swap_sprites(t_sprite_sort *a, t_sprite_sort *b);
+t_sprite_sort	*create_sprites(int *order, float *dist, int amount);
+void			sort_sprites_array(t_sprite_sort *sprites, int amount);
+void			update_arrays(t_sprite_sort *sprites, int *order,
+					float *dist, int amount);
+void			sort_sprites(int *order, float *dist, int amount);
+void			initialize_sprite_distance(t_global *global, int *sprite_order,
+					float *sprite_distance);
+long long		get_time(void);
+void			switch_texture(t_global *global);
 
 /* Colors */
 
