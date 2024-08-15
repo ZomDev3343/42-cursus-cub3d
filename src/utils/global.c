@@ -6,7 +6,7 @@
 /*   By: truello <truello@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:36:11 by truello           #+#    #+#             */
-/*   Updated: 2024/08/15 11:54:38 by truello          ###   ########.fr       */
+/*   Updated: 2024/08/15 12:09:05 by truello          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	init_global(t_global *global)
 	global->fps = get_time();
 	global->time = get_time();
 	global->player.x = -1;
+	global->n_sprites = 0;
+	global->sprites = NULL;
 	global->deltatime = 0;
 }
 
